@@ -77,8 +77,6 @@ function checkOrientation() {
   document.body.classList.toggle('landscape', isLandscape);
 }
 window.addEventListener('resize', checkOrientation);
-checkOrientation();
-
 </script>
 </head>
 <body>
@@ -240,6 +238,8 @@ checkOrientation();
 </div>
 
 <script>
+checkOrientation();
+
 const loading=document.getElementById('loading-overlay');
 const loadingProgress=document.getElementById('loadingProgress');
 
