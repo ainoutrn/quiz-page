@@ -71,12 +71,20 @@ const stageData=[
   {"stage":"4", "loadMsg":"あなたにあわせて調整しています…", "startMsg":"こんな問題はどうですか？"},
   {"stage":"5", "loadMsg":"回答データ解析中…", "startMsg":"あなたは・・・"},
 ]
+
+function checkOrientation() {
+  const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+  document.body.classList.toggle('landscape', isLandscape);
+}
+window.addEventListener('resize', checkOrientation);
+checkOrientation();
+
 </script>
 </head>
 <body>
 
 <div id="first-confirm" >
-  <span class="first-confirm-title">AI脳トレへようこそ ver7:48</span>
+  <span class="first-confirm-title">AI脳トレへようこそ ver12:20</span>
   <img class="first-confirm-image" src="images/image.png" />
   <div class="sentence">
     このアプリはあなたの回答をもとに<br>
