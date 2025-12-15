@@ -317,7 +317,7 @@ body.hide {
   justify-content:space-between;
   height:95dvh;
   width: 100%;
-  max-width:60dvh;
+  /*max-width:60dvh;*/
   margin: 5dvh 5vw;
   box-sizing:border-box;
 }
