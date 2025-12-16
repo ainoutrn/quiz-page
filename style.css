@@ -8,6 +8,11 @@
   --color-light: #3399FF;
   --color-bg-top: #3399FF;
   --color-bg-bottom: #0056b3;
+  /* -0 blue */
+  --color-dark-0: #002060;
+  --color-light-0: #3399FF;
+  --color-bg-top-0: #3399FF;
+  --color-bg-bottom-0: #0056b3;
   /* -1 blue */
   --color-dark-1: #002060;
   --color-light-1: #3399FF;

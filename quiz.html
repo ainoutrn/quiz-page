@@ -15,6 +15,10 @@ const FINAL_STAGE = 5;
 
 // --- 問題データ ---
 const quizData=[
+  {"stage":"0","mode":"","quiztype":"質問１","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたの性別は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"男性"},{"text":"女性"},{"text":""},{"text":""}],"correct":"","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
+  {"stage":"0","mode":"","quiztype":"質問２","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"年齢は？<br><br>A.20歳未満<br>B.20歳以上40歳未満<br>C.40歳以上60歳未満<br>D.60歳以上","image":"","music":"","image2":"","image2time":"","options":[{"text":"A"},{"text":"B"},{"text":"C"},{"text":"D"}],"correct":"","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
+  {"stage":"0","mode":"","quiztype":"質問３","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"直観で選んでください。<br>一番最初に目に入った動物は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"images/egg.png"},{"text":"images/otama.png"},{"text":"images/otama2.png"},{"text":"images/kaeru.png"}],"correct":"","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
+
   {"stage":"1","mode":"","quiztype":"計算力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"３５－３０＝？","image":"","music":"","image2":"","image2time":"","options":[{"text":"5"},{"text":"7"},{"text":""},{"text":""}],"correct":"5","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
   {"stage":"1","mode":"","quiztype":"空間認識力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"バスの進行方向は？","image":"images/bus_left.png","music":"","image2":"","image2time":"","options":[{"text":"左"},{"text":"右"},{"text":""},{"text":""}],"correct":"左","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
   {"stage":"1","mode":"","quiztype":"色彩認識力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"この中で一番大きいマルは？","image":"images/ookiimaru.png","music":"","image2":"","image2time":"","options":[{"text":"青"},{"text":"赤"},{"text":""},{"text":""}],"correct":"赤","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
@@ -64,12 +68,15 @@ const quizData=[
 
 // --- ステージ情報 ---
 const stageData=[
-  {"stage":"1", "loadMsg":"問題を作成しています…", "startMsg":"まずは肩慣らしです。"},
+  {"stage":"0", "loadMsg":"準備しています…", "startMsg":"脳トレの前に、質問です"},
+  {"stage":"1", "loadMsg":"問題を作成しています…", "startMsg":"AI脳トレ スタート！"},
   {"stage":"2", "loadMsg":"あなたの回答を分析しています…", "startMsg":"少しレベルを上げます！"},
   {"stage":"3", "loadMsg":"さらに分析しています…", "startMsg":"やりますね！さらにレベルアップ！"},
   {"stage":"4", "loadMsg":"あなたにあわせて調整しています…", "startMsg":"こんな問題はどうですか？"},
-  {"stage":"5", "loadMsg":"回答データ解析中…", "startMsg":"あなたは・・・"},
+  {"stage":"5", "loadMsg":"回答データ解析中…", "startMsg":"最終ステージです"},
 ]
+
+var isHiroshi = false;
 
 function checkOrientation() {
   const isLandscape = window.matchMedia('(orientation: landscape)').matches;
@@ -81,7 +88,7 @@ window.addEventListener('resize', checkOrientation);
 <body>
 
 <div id="first-confirm" >
-  <span class="first-confirm-title">AI脳トレへようこそ ver12:20</span>
+  <span class="first-confirm-title">AI脳トレへようこそ</span>
   <img class="first-confirm-image" src="images/image.png" />
   <div class="sentence">
     このアプリはあなたの回答をもとに<br>
@@ -407,9 +414,11 @@ function showQuestion(){
   clearTimeout(imageSwitchTimer);
   
   q=quizData[currentIndex];
-  quizNo.innerHTML="Q" + (currentIndex + 1) + "　" + q.quiztype;
+  quizNo.innerHTML="Q" + (currentIndex - stageData[0].count + 1) + "　" + q.quiztype;
   
-  if(q.question=="今何問目？"){
+  if(nowStage.stage==0){
+    quizNo.innerHTML=q.quiztype;
+  }else if(q.question=="今何問目？"){
     quizNo.innerHTML="Q？" + "　" + q.quiztype;
   }
   
@@ -700,6 +709,18 @@ function handleAnswer(selected){
     if(btn.textContent.includes(selected)) btn.classList.add('pressed');
   });
 
+  if(nowStage.stage==0){
+
+    if(selected=='男性'){
+      isHiroshi = true;
+    }
+
+    setTimeout(() => {
+      quizFinaly();
+    }, 500);
+    return;
+  }
+
   se_re.pause();//ダサいが
 
   if(isCorrect){
@@ -762,48 +783,48 @@ function rendaResult(){
   stopTimer();
   const q=quizData[currentIndex];
   
-    if(q.perfect <= rendaCount){
-      gained = 600;
-      cutinTitle = "PERFECT!!"
-      setRankStyle('pinkgold');
-      
-    }else if(q.excellent <= rendaCount){
-      //ポイント＝評価基礎点＋評価倍率×評価範囲の​下限超過時間​（％）​
-      gained = 500 + Math.floor(5 * (rendaCount - q.excellent) / (q.perfect - q.excellent));
-      cutinTitle = "EXCELLENT!"
-      setRankStyle('rainbow');
-      
-    }else if(q.great <= rendaCount){
-      gained = 300 + Math.floor(3 * (rendaCount - q.great) / (q.excellent - q.great));
-      cutinTitle = "GREAT!"
-      setRankStyle('gold');
-      
-    }else if(q.good <= rendaCount){
-      gained = 200 + Math.floor(2 * (rendaCount - q.good) / (q.great - q.good));
-      cutinTitle = "GOOD"
-      setRankStyle('silver');
-      
-    }else if(q.safe <= rendaCount){
-      gained = 100 + Math.floor(1 * (rendaCount - q.safe) / (q.good - q.safe));
-      cutinTitle = "SAFE"
-      setRankStyle('bronze');
-      
-    }else{
-      gained = 0;
-      cutinTitle = "BAD"
-      setRankStyle('blue');
-    }
+  if(q.perfect <= rendaCount){
+    gained = 600;
+    cutinTitle = "PERFECT!!"
+    setRankStyle('pinkgold');
+    
+  }else if(q.excellent <= rendaCount){
+    //ポイント＝評価基礎点＋評価倍率×評価範囲の​下限超過時間​（％）​
+    gained = 500 + Math.floor(5 * (rendaCount - q.excellent) / (q.perfect - q.excellent));
+    cutinTitle = "EXCELLENT!"
+    setRankStyle('rainbow');
+    
+  }else if(q.great <= rendaCount){
+    gained = 300 + Math.floor(3 * (rendaCount - q.great) / (q.excellent - q.great));
+    cutinTitle = "GREAT!"
+    setRankStyle('gold');
+    
+  }else if(q.good <= rendaCount){
+    gained = 200 + Math.floor(2 * (rendaCount - q.good) / (q.great - q.good));
+    cutinTitle = "GOOD"
+    setRankStyle('silver');
+    
+  }else if(q.safe <= rendaCount){
+    gained = 100 + Math.floor(1 * (rendaCount - q.safe) / (q.good - q.safe));
+    cutinTitle = "SAFE"
+    setRankStyle('bronze');
+    
+  }else{
+    gained = 0;
+    cutinTitle = "BAD"
+    setRankStyle('blue');
+  }
 
-    if(cutinTitle != "BAD"){
-      playSound('seikai');
-      //playSound('point', 0.5);
-    }else{
-      playSound('huseikai');
-    }
-    
-    addScore(gained);
-    
-    showCutIn(true, cutinTitle);
+  if(cutinTitle != "BAD"){
+    playSound('seikai');
+    //playSound('point', 0.5);
+  }else{
+    playSound('huseikai');
+  }
+  
+  addScore(gained);
+  
+  showCutIn(true, cutinTitle);
 }
 
 let score = 0;
@@ -910,23 +931,33 @@ function showCutIn(isCorrect, text) {
       
   setTimeout(() => {
     cutin.classList.remove('active');
-  
-    currentIndex++;
-    stageQuizIdx++;
-    
-    if (currentIndex < quizData.length){
-      if (stageQuizIdx >= nowStage.count){
-        stageCount++;
-        nowStage = stageData[stageCount];
-        showNextStage();
-      }else{
-        showQuestion();
-      }
-    }else{
-      endQuiz();
-    }
+    quizFinaly();
         
   }, cutinShowTime + 750);
+}
+
+function quizFinaly(){
+  currentIndex++;
+  stageQuizIdx++;
+  
+  if (currentIndex < quizData.length){
+    if (stageQuizIdx >= nowStage.count){
+      stageCount++;
+      nowStage = stageData[stageCount];
+
+      if(isHiroshi && nowStage.stage==4){
+        //弘退場
+        endQuiz();
+        return;
+      }
+
+      showNextStage();
+    }else{
+      showQuestion();
+    }
+  }else{
+    endQuiz();
+  }
 }
 
 var stageCount = 0;
@@ -1000,7 +1031,9 @@ function showNextStage(){
   
   stageQuizIdx=0;
   
-  if(nowStage.stage == FINAL_STAGE){
+  if(nowStage.stage == 0){
+    stageText.textContent = ``;
+  }else if(nowStage.stage == FINAL_STAGE){
     stageText.textContent = `FINAL STAGE`;
   }else{
     stageText.textContent = `STAGE ` + nowStage.stage;
@@ -1372,16 +1405,11 @@ function showCountdown(){
         document.getElementById('timer-container').style.display = "";
         document.getElementById('buttons').style.display = "";
         
-        if(nowStage.stage==FINAL_STAGE){
-          /*
-          bgm.pause();
-          bgm_michiyo.volume = 1.0;
-          bgm_michiyo.play();
-          */
+        if(nowStage.stage==FINAL_STAGE || nowStage.stage==1){
+
         }else{
           //BGMスピードを変更
           playBGM(nowStage.stage);
-          //bgm.playbackRate = 0.9 + 0.1 * nowStage.stage;
         }
 
         showQuestion();
@@ -1481,6 +1509,10 @@ function playBGM(stage){
 
   var target;
   switch (stage) {
+  case "0":
+    target = bgm;
+    stage++;
+    break;
   case "1":
     target = bgm;
     break;
