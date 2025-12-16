@@ -169,7 +169,7 @@ body::before {
 </head>
 <body>
 <div class="container">
-
+  <audio id="bgm" src="bgm/result.mp3" preload="auto"></audio>
   <div id="first-tap-area" onclick="tap();">
     <span>Tap!</span>
   </div>
@@ -233,39 +233,95 @@ Promise.all(imageUrls.map(src => new Promise(resolve => {
 
 var executed = false;
 
+const bgm = document.getElementById("bgm");
+const timeline = [
+  { time: 1.6, action: () => line1.style.animation = "showLine 0.01s forwards" },
+  { time: 4.5, action: () => upKawashima() },
+  { time: 5.5, action: () => downPico() },
+  { time: 6.0, action: () => omedetou() },
+  { time: 7.0, action: () => showScore() },
+  { time: 12.0, action: () => showTomoTatsu() },
+];
+
+let idx = 0;
+
+function sync() {
+  const t = bgm.currentTime;
+
+  while (idx < timeline.length && t >= timeline[idx].time) {
+    timeline[idx].action();
+    idx++;
+  }
+  if (!bgm.paused) requestAnimationFrame(sync);
+}
+
+bgm.addEventListener("play", () => {
+  idx = 0;
+  requestAnimationFrame(sync);
+});
+
+function upKawashima(){
+  stopFloat();
+  
+  face.src = "kawashima2.png";
+  // 画像が読み込まれたら上昇を開始
+  face.onload = () => {
+    face.style.transition = "transform 0.8s ease-in";
+    face.style.opacity = "1";
+    face.style.transform = "translateY(-40dvh)";
+  };
+}
+
+function downPico(){
+  face.src = "pico.png";
+  face.onload = () => {
+    face.style.transition = "transform 0.2s ease-out";
+    face.style.transform = "translateY(0)";
+  }
+}
+
+function omedetou(){
+  line2.style.animation = "showLine 0.01s forwards";
+  strike.classList.add("exec");
+
+  //還暦おめでとう
+  line3.style.animation = "showLine 0.5s forwards";
+
+  //紙吹雪
+  startConfetti(); 
+
+  //ふわふわ再開
+  startFloat();
+  face.style.animation = "showLine 0s forwards, float 0.5s ease-in-out infinite";
+}
+
+function showScore(){
+  line4.style.animation = "showLine 0.5s forwards";
+  const hash = window.location.hash;
+  const scoreValue = hash.replace('#score=', '');
+  addScore(scoreValue, 5.2);
+}
+
+function showTomoTatsu(){
+  line5.style.animation = "showLine 0.5s forwards";
+}
+
 function tap(){
   if(executed) retuen;
   executed = true;
 
-  bgm_mario = prePlaySound('mario');
-  se_clap = prePlaySound('clap');
-  se_clap.currentTime = 0.5;
-
   document.getElementById('first-tap-area').classList.add('hide');
-  playSound(se_clap);
+  bgm.play();
 
+  /*
   setTimeout(() => {
     line1.style.animation = "showLine 0.01s forwards";
-    playSound(se_clap);
   }, 1100);
 
   // ① 3秒後：上昇開始
   setTimeout(() => {
     stopFloat();
     
-    var firstSE = true; 
-    bgm_mario.volume = 1.0;
-    bgm_mario.currentTime = 7.0;
-    bgm_mario.play();
-    /*
-    //いったんストップ
-    bgm_mario.addEventListener("timeupdate", () => {
-      if (bgm_mario.currentTime >= 8.45 && firstSE) {
-        firstSE = false;
-        bgm_mario.pause();
-      }
-    });*/
-
     face.src = "kawashima2.png";
     // 画像が読み込まれたら上昇を開始
     face.onload = () => {
@@ -289,9 +345,6 @@ function tap(){
   setTimeout(() => {
     line2.style.animation = "showLine 0.01s forwards";
     strike.classList.add("exec");
-    //BGM再開
-//    bgm_mario.currentTime = 8.55;
-//    bgm_mario.play();
 
     //還暦おめでとう
     line3.style.animation = "showLine 0.5s forwards";
@@ -318,7 +371,7 @@ function tap(){
     }, 4500);
 
   }, 5000);
-
+  */
 }
 
 

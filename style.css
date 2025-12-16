@@ -81,6 +81,13 @@ body {
   -webkit-touch-callout: none; /* 画像長押しメニュー無効 */
 }
 
+/* タブレット調整 */
+@media (min-width: 768px) {
+  html {
+    font-size: 150%;
+  }
+}
+
 .landscape::before{
   font-size: large;
   content:"縦向きで表示してください";
