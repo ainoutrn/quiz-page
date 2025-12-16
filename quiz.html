@@ -1444,7 +1444,11 @@ function endQuiz(){
   }, 100);
 
   setTimeout(() => {
-    window.location.href = 'result.html#score=' + score; // 遷移先HTMLを指定
+    if(isHiroshi){
+      window.location.href = 'result-a.html#score=' + score; 
+    }else{
+      window.location.href = 'result.html#score=' + score; // 遷移先HTMLを指定
+    }
   }, 3500);
 }
 
