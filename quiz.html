@@ -15,9 +15,9 @@ const FINAL_STAGE = 5;
 
 // --- 問題データ ---
 const quizData=[
-  {"stage":"0","mode":"","quiztype":"質問１","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたの性別は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"男性"},{"text":"女性"},{"text":""},{"text":""}],"correct":"","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
-  {"stage":"0","mode":"","quiztype":"質問２","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたの年代は？<br><br>A.20歳未満<br>B.20歳以上40歳未満<br>C.40歳以上60歳未満<br>D.60歳以上","image":"","music":"","image2":"","image2time":"","options":[{"text":"A"},{"text":"B"},{"text":"C"},{"text":"D"}],"correct":"","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
-  {"stage":"0","mode":"","quiztype":"質問３","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"直観で選んでください。<br>一番最初に目に入った動物は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"images/egg.png"},{"text":"images/otama.png"},{"text":"images/otama2.png"},{"text":"images/kaeru.png"}],"correct":"","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
+  {"stage":"0","mode":"","quiztype":"質問1","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたの性別は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"男性"},{"text":"女性"},{"text":""},{"text":""}],"correct":"","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
+  {"stage":"0","mode":"","quiztype":"質問2","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたの年代は？<br><br>A.20歳未満<br>B.20歳以上40歳未満<br>C.40歳以上60歳未満<br>D.60歳以上","image":"","music":"","image2":"","image2time":"","options":[{"text":"A"},{"text":"B"},{"text":"C"},{"text":"D"}],"correct":"","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
+  {"stage":"0","mode":"","quiztype":"質問3","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"以下でよろしいですか？<br><br>性別年代","image":"","music":"","image2":"","image2time":"","options":[{"text":"はい"},{"text":"いいえ"},{"text":""},{"text":""}],"correct":"はい","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
   {"stage":"1","mode":"","quiztype":"計算力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"３５－３０＝？","image":"","music":"","image2":"","image2time":"","options":[{"text":"5"},{"text":"7"},{"text":""},{"text":""}],"correct":"5","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
   {"stage":"1","mode":"","quiztype":"空間認識力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"バスの進行方向は？","image":"images/bus_left.png","music":"","image2":"","image2time":"","options":[{"text":"左"},{"text":"右"},{"text":""},{"text":""}],"correct":"左","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
   {"stage":"1","mode":"","quiztype":"色彩認識力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"この中で一番大きいマルは？","image":"images/ookiimaru.png","music":"","image2":"","image2time":"","options":[{"text":"青"},{"text":"赤"},{"text":""},{"text":""}],"correct":"赤","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0},
@@ -62,7 +62,7 @@ const quizData=[
   {"stage":"5","mode":"renda","quiztype":"運動神経伝達力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"連打して！","image":"images/pico_up.png","music":"","image2":"images/pico_down.png","image2time":"","options":[{"text":"連打!"},{"text":""},{"text":""},{"text":""}],"correct":"","answerPict":"","rand":false,"answertime":5000,"answerstart":5000,"perfect":50,"excellent":40,"great":30,"good":20,"safe":10},
   {"stage":"5","mode":"mikiri","quiztype":"運動神経伝達力","beforeTxt":"もぐらが出たらたたけ！","beforeImg":"images/anagachi_0.png","beforeMusic":"","beforeTime":"13000","question":"もぐらが出たらたたけ！","image":"images/anagachi_mogu.png","music":"","image2":"","image2time":"","options":[{"text":"左上"},{"text":"右上"},{"text":"左下"},{"text":"右下"}],"correct":"左下","answerPict":"","rand":false,"answertime":4000,"answerstart":4000,"perfect":3500,"excellent":3000,"great":2000,"good":1000,"safe":0},
   {"stage":"5","mode":"","quiztype":"聴力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"みちよって何回言った？","image":"images/kiite.png","music":"","image2":"","image2time":"","options":[{"text":"33"},{"text":"34"},{"text":"35"},{"text":"36"}],"correct":"34","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0},
-  {"stage":"5","mode":"","quiztype":"最終確認","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたは<br>吉田道代<br>ですね？","image":"","music":"","image2":"","image2time":"","options":[{"text":"はい"},{"text":"はい"},{"text":"はい"},{"text":"はい"}],"correct":"はい","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0},  
+  {"stage":"5","mode":"","quiztype":"最終確認","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたは<br>吉田道代<br>ですね？","image":"","music":"","image2":"","image2time":"","options":[{"text":"はい"},{"text":"はい"},{"text":"はい"},{"text":"はい"}],"correct":"はい","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0},
 ];
 
 // --- ステージ情報 ---
@@ -359,7 +359,7 @@ function startTimer(){
         if(q.mode=='renda'){
           rendaResult();
         }else{
-          if(!testMode){
+          if(!testMode && nowStage.stage!=0){
             handleAnswer(null);
           }
         }
@@ -511,7 +511,13 @@ function showQuizCountdown(){
 
 function showQuestionMain(){
 
-  questionBox.innerHTML=q.question + (q.image?`<br><img src="${q.image}" class="quiz-img">`:"");
+  var qText = q.question;
+
+  if(q.quiztype=='質問3'){
+    qText = q.question.replace('性別年代', seibetsuNenrei);
+  }
+
+  questionBox.innerHTML=qText + (q.image?`<br><img src="${q.image}" class="quiz-img">`:"");
   setButtons();
 
   if(q.mode=='renda'){
@@ -696,6 +702,7 @@ const rankTextBG = document.getElementById('rankTextBG');
 const rankText = document.getElementById('rankText');
 const rankHighlight = document.getElementById('rankTextHighlight');
 const cutinScoreValue=document.getElementById('cutinScoreValue');
+var seibetsuNenrei = "";
 
 function handleAnswer(selected){
 
@@ -714,8 +721,28 @@ function handleAnswer(selected){
       isHiroshi = true;
     }
 
+    if(q.quiztype=='質問1'){
+      seibetsuNenrei = selected + "<br>";
+    }else if(q.quiztype=='質問2'){
+      if(selected=='A'){
+        seibetsuNenrei+="20歳未満";
+      }else if(selected=='B'){
+        seibetsuNenrei+="20歳以上40歳未満";
+      }else if(selected=='C'){
+        seibetsuNenrei+="40歳以上60歳未満";
+      }else if(selected=='D'){
+        seibetsuNenrei+="60歳以上";
+      }
+    }
+
     setTimeout(() => {
-      quizFinaly();
+      if(q.quiztype=='質問3' && selected=='いいえ'){
+        currentIndex=0;
+        stageQuizIdx=0;
+        showQuestion();
+      }else{
+        quizFinaly();
+      }
     }, 500);
     return;
   }
@@ -1057,6 +1084,10 @@ function showNextStage(){
     // ランダムに進行量を変える（1/2は進行なし、1/2は0～9％）
     var upPt = Math.random() * 18 - 9;
 
+    if(nowStage.stage == 0){
+      //初回質問は加速
+      upPt *= 3;
+    }
     if(nowStage.stage == FINAL_STAGE){
       upPt = upPt / 3; //最終ステージは減速
       //中盤ははやめ
