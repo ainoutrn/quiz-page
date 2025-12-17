@@ -21,10 +21,17 @@ body::before {
   position: fixed;
   top:0; left:0;
   width:100%; height:100%;
-  background-image: linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
-                    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
-  background-size: 30px 30px;
+  background-image: linear-gradient(to right, rgba(0,0,0,0.05) 0.0625rem, transparent 0.0625rem),
+                    linear-gradient(to bottom, rgba(0,0,0,0.05) 0.0625rem, transparent 0.0625rem);
+  background-size: 1.875rem 1.875rem;/* 30px */
   pointer-events: none;
+}
+
+/* タブレット調整 */
+@media (min-width: 768px) {
+  html {
+    font-size: 150%;
+  }
 }
 
 .container {
@@ -64,7 +71,7 @@ body::before {
   opacity: 0;
 }
 .line5 {
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: bold;
   text-align: left;
   margin-top: 5dvh;
@@ -80,12 +87,12 @@ body::before {
 
 /* 画像ボックス */
 .face-container {
-  width: 150px;
-  height: 150px;
+  width: 9.375rem; /* 150px */
+  height: 9.375rem; /* 150px */
   position: absolute;
   top: 10dvh;
   right: -5vw;
-  perspective: 800px;
+  perspective: 50rem; /* 800px */
 }
 .float-wrap {
   animation: float 2s ease-in-out infinite;
@@ -103,7 +110,7 @@ body::before {
 /* アニメーション */
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+  50% { transform: translateY(-1.25rem); }   /* 20px */
 }
 @keyframes showLine {
   to { opacity: 1; }
@@ -134,7 +141,7 @@ body::before {
   display:flex;
   justify-content:center;
   align-items:center;
-  border:5px solid #aaa;
+  border:0.3125rem solid #aaa; /* 5px */
   font-weight: bold;
   color:#aaa;
   border-radius:50%;

@@ -113,14 +113,6 @@ img {
 body {
   position:relative;
   inset:0;
-  /*
-  background-image: 
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.3) 0 1px, transparent 1px 40px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.3) 0 1px, transparent 1px 40px);
-  background-size: 40px 40px, 40px 40px, 200px 200px, 300px 300px;
-  background-position: 100% 100%;
-  animation: movePattern 50s linear infinite;
-  */
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
@@ -205,7 +197,7 @@ body.hide {
 /* === 初期確認画面 === */
 #first-confirm{
   position:fixed;
-  width:80vw;
+  width:calc(100dvw - 10dvh);
   /*top:5vw;*/
   height:90dvh;
   display:flex;
@@ -216,15 +208,15 @@ body.hide {
   color:white;
   background:rgba(255,255,255,0.15);
   border:1.5px solid rgba(255,255,255,1.0);
-  border-radius:8px;
-  padding:1em 1.2em;
+  border-radius:0.5rem;    /* 8px */
+  padding:1rem 1.2rem;
   font-size:1rem;
   font-weight: bold;
-  line-height:1.6;
-  box-shadow:0 3px 6px rgba(0,0,0,0.15);
+  line-height:1.6rem;
+  box-shadow:0 0.1875rem 0.375rem rgba(0,0,0,0.15);
 
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(1.25rem);
   transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
@@ -235,25 +227,25 @@ body.hide {
 
 #first-confirm.hide {
   opacity:0;
-  transform: translateY(20px);
+  transform: translateY(1.25rem);
 }
 
 .first-confirm-title{
   color: white;
   font-size:1.2rem;
-  margin-bottom: 10px;
+  margin-bottom: 0.625rem;  /* 10px */
 }
 .first-confirm-title::before {
   content: "";
   position: absolute;
-  top: calc(5vw + 1em - 0.5em);
+  top: calc(5dvh - 0.2rem);
   left: 0;
   width: 80vw;
-  height: 1.5em;            /* 高さは文字サイズに合わせる */
+  height: 1.6rem;            /* 高さは文字サイズに合わせる */
   transform: translateY(-50%); /* 縦中央に揃える */
   background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,0));
   z-index: -1;               /* 背景として文字の下に配置 */
-  border-radius: 4px;        /* 角を丸めたい場合 */
+  border-radius: 0.25rem;   /* 4px */        /* 角を丸めたい場合 */
 }
 
 .highlight {
@@ -266,9 +258,9 @@ body.hide {
 
 .first-confirm-image {
   width: 80vw;
-  border:1px solid rgba(255,255,255,0.6);
-  border-radius:8px;
-  margin-bottom: 10px;
+  border:0.0625rem solid rgba(255,255,255,0.6);
+  border-radius:0.5rem;    /* 8px */
+  margin-bottom:0.625rem;  /* 10px */
 }
 
 .divider {
@@ -281,8 +273,8 @@ body.hide {
 .audio-info {
   display: flex;
   align-items: flex-start; /* アイコンを上に揃える */
-  gap: 8px;                /* アイコンとテキストの間隔 */
-  margin-top: 10px;
+  gap: 0.5rem;    /* 8px */                /* アイコンとテキストの間隔 */
+  margin-top: 0.625rem;  /* 10px */
   width: 80vw;
 }
 
@@ -290,14 +282,14 @@ body.hide {
   width: 24vw;  /* 正方形サイズ */
   height: 24vw;
   flex-shrink: 0; /* アイコンの縮小を防ぐ */
-  border:1px solid rgba(255,255,255,0.6);
+  border:0.0625rem solid rgba(255,255,255,0.6);
   border-radius:8px;
 }
 
 .audio-info .audio-text {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* 行間の調整 */
+  gap: 0.25rem;   /* 4px */ /* 行間の調整 */
 }
 
 #first-confirm-buttons{
@@ -307,18 +299,18 @@ body.hide {
 #first-confirm button {
     width: 50vw;
     height: 10dvh;
-    padding: 5px;
+    padding: 0.3125rem; /* 5px */
     font-size: 1.5rem;
-    border-radius: 10px;
+    border-radius: 0.625rem;  /* 10px */
 }
 
 #first-confirm #back{
     height: 7dvh;
     font-size: 1.2rem;
     color:var(--color-shadow);
-    border: 5px solid var(--color-shadow);
-    border-radius: 10px;
-    margin-top: 25px;
+    border: 0.3125rem solid var(--color-shadow);
+    border-radius: 0.625rem;  /* 10px */
+    margin-top: 1.5625rem; /* 25px */
 }
 
 /* === クイズコンテナ === */
@@ -343,16 +335,15 @@ body.hide {
   line-height: 1;
   justify-content: space-between;
   width: calc(100% - 4dvh);
-  max-width: 500px;
   background: rgba(0, 0, 0, 0.2);
   color: white;
-  border-radius: 28px;
+  border-radius: 1.75rem; /* 28px */
   padding: 0.5rem 1rem;
   font-weight: bold;
   font-size: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.3);
   z-index: 1500;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(0.1875rem);
 
   opacity: 0;
   top: 5vw;
@@ -382,9 +373,9 @@ body.hide {
   flex: 1;
   text-align: center;
   text-shadow:
-    0 0 4px rgba(100,180,255,0.7),
-    0 0 8px rgba(100,180,255,0.4),
-    0 0 12px rgba(100,180,255,0.2);
+    0 0 0.25rem rgba(100,180,255,0.7),
+    0 0 0.5rem rgba(100,180,255,0.4),
+    0 0 0.75rem rgba(100,180,255,0.2);
   display: flex;
   align-items: center;
   color: #fff;
@@ -400,14 +391,14 @@ body.hide {
   align-items: center;
   justify-content: center;
   text-shadow:
-    -2px -2px 0 var(--color-dark),
-     2px -2px 0 var(--color-dark),
-    -2px  2px 0 var(--color-dark),
-     2px  2px 0 var(--color-dark),
-    -2px  0   0 var(--color-dark),
-     2px  0   0 var(--color-dark),
-     0   -2px 0 var(--color-dark),
-     0    2px 0 var(--color-dark);
+    -0.125rem -0.125rem 0 var(--color-dark),
+     0.125rem -0.125rem 0 var(--color-dark),
+    -0.125rem  0.125rem 0 var(--color-dark),
+     0.125rem  0.125rem 0 var(--color-dark),
+    -0.125rem  0   0 var(--color-dark),
+     0.125rem  0   0 var(--color-dark),
+     0   -0.125rem 0 var(--color-dark),
+     0    0.125rem 0 var(--color-dark);
 }
 
 .stage-left, .stage-right {
@@ -422,7 +413,7 @@ body.hide {
   align-items: center;
   justify-content: center;
   margin: 0 0.2rem;
-  transform: translateY(1px);
+  transform: translateY(0.0625rem);
 }
 
 .stage-progress {
@@ -430,11 +421,11 @@ body.hide {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 12px;
+  height: 0.75rem; /*12px;*/
   background: var(--color-dark);
   border-radius: 0px;
-  padding: 2px;
-  gap: 2px;
+  padding: 0.125rem; /*2px;*/
+  gap: 0.125rem; /*2px;*/
 }
 
 .stage-progress-segment {
@@ -450,13 +441,13 @@ body.hide {
 }
 
 .score-label {
-  transform: translateY(2px);
+  transform: translateY(0.125rem);
   font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;
 }
 
 .score-value {
-  transform: translateY(1px);
+  transform: translateY(0.0625rem);
   font-size: 1.2rem;
   text-align: right;
   transition: transform 0.2s ease, text-shadow 0.2s ease;
@@ -465,9 +456,9 @@ body.hide {
 .score-value.bump {
   transform: scale(1.2);
   text-shadow:
-    0 0 8px rgba(255,255,255,0.9),
-    0 0 16px rgba(255,255,255,0.8),
-    0 0 28px rgba(255,255,255,0.6);
+    0 0 0.5rem rgba(255,255,255,0.9),
+    0 0 1rem rgba(255,255,255,0.8),
+    0 0 1.75rem rgba(255,255,255,0.6);
 }
 
 /* === クイズジャンルヘッダー === */
@@ -477,7 +468,7 @@ body.hide {
   color:var(--color-text);
   font-weight:bold;
   font-size:1.2rem;
-  border-radius:0 20px 20px 0;
+  border-radius:0 1.25rem 1.25rem 0;
   padding:0.3rem 1.5rem;
   width:max-content;
 }
@@ -487,12 +478,12 @@ body.hide {
   /*flex:3;*/
   height: 30dvh;
   background:white;
-  border-radius:10px;
+  border-radius:0.625rem;  /* 10px */
   padding:2dvh 2vw;
   text-align:center;
   font-size:1.3rem;
   font-weight:bold;
-  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+  box-shadow:0 0.1875rem 0.625rem rgba(0,0,0,0.1);
   margin-top:1dvh;
   display:flex;
   flex-direction:column;
@@ -502,15 +493,15 @@ body.hide {
 }
 
 .question-box img{
-  max-width:80vw; max-height:25dvh; margin-top:1dvh; border-radius:8px;
+  max-width:80vw; max-height:25dvh; margin-top:1dvh; border-radius:0.5rem;
 }
 
 @keyframes shake {
   0%, 100% { transform: translate(0, 0); }
-  20% { transform: translate(-5px, 0); }
-  40% { transform: translate(5px, 0); }
-  60% { transform: translate(-3px, 0); }
-  80% { transform: translate(3px, 0); }
+  20% { transform: translate(-0.3125rem, 0); }
+  40% { transform: translate(0.3125rem, 0); }
+  60% { transform: translate(-0.3125rem, 0); }
+  80% { transform: translate(0.3125rem, 0); }
 }
 
 .question-box img.shake {
@@ -524,34 +515,34 @@ body.hide {
 
 #tap-gauge {
   position: absolute;
-  right: 20px;
+  right: 1.25rem;   /* 20px */
   top: 35dvh;
   transform: translateY(-50%);
-  width: 15px;
+  width: 0.9375rem; /* 15px */
   height: 20dvh;
   background: #FFF;
-  border: 3px solid var(--color-dark);
+  border: 0.1875rem solid var(--color-dark);
   border-radius: 0px;
 }
 
 #tap-count{
   color:var(--color-dark);
   position: absolute;
-  top: -30px;
-  width: 50px;
+  top: -1.875rem;  /* 30px */
+  width: 3.125rem;  /* 50px */
   text-align: center;
-  font-size: 18px;
-  right:-18px;
+  font-size: 1.125rem;  /* 18px */
+  right:-1.125rem;  /* 18px */
 }
 
 #tap-fill {
   position: absolute;
-  bottom: -3px;
-  left: -3px;
+  bottom: -0.1875rem; /* 3px */
+  left: -0.1875rem; /* 3px */
   width: 100%;
   height: 0%;
   background: #ff3b3b;
-  border: 3px solid var(--color-dark);
+  border: 0.1875rem solid var(--color-dark);
   /* transition: height 0.1s linear; */
 }
 
@@ -585,23 +576,23 @@ body.hide {
   font-weight:bold;
   font-size:1rem;
   text-shadow:
-    -2px -2px 0 var(--color-dark),
-     2px -2px 0 var(--color-dark),
-    -2px  2px 0 var(--color-dark),
-     2px  2px 0 var(--color-dark),
-    -2px  0   0 var(--color-dark),
-     2px  0   0 var(--color-dark),
-     0   -2px 0 var(--color-dark),
-     0    2px 0 var(--color-dark);
+    -0.125rem -0.125rem 0 var(--color-dark),
+     0.125rem -0.125rem 0 var(--color-dark),
+    -0.125rem  0.125rem 0 var(--color-dark),
+     0.125rem  0.125rem 0 var(--color-dark),
+    -0.125rem  0   0 var(--color-dark),
+     0.125rem  0   0 var(--color-dark),
+     0   -0.125rem 0 var(--color-dark),
+     0    0.125rem 0 var(--color-dark);
 }
 
 .timer-bar {
   position: relative;
   width: 90%;
-  height: 12px;
+  height: 0.75rem; /*12px;*/
   background: var(--color-dark);
-  border: 3px solid var(--color-dark);
-  border-radius: 10px;
+  border: 0.1875rem solid var(--color-dark); /* 3px */
+  border-radius: 0.625rem; /* 10px */
   overflow: hidden;
 }
 
@@ -610,7 +601,7 @@ body.hide {
   height: 100%;
   width: 100%;
   background: var(--color-light);
-  border-radius: 10px;
+  border-radius: 0.625rem; /* 10px */
   transition: width 10s linear;
 }
 
@@ -623,7 +614,7 @@ body.hide {
   justify-content:space-between;
   align-items:stretch;
   gap:4vw;
-  gap:15px;
+  gap:0.9375em; /* 15px */
   margin-bottom:1dvh;
   flex-wrap: nowrap; /* 折り返さない */
 }
@@ -662,11 +653,11 @@ body.hide {
 button{
   flex: 1;                /* 均等幅 */
   background:white;
-  border:7px solid var(--color-dark);
-  outline:3px solid white;
-  border-radius:12px;
+  border:0.4375rem solid var(--color-dark); /* 7px */
+  outline:0.1875rem solid white; /* 3px */
+  border-radius:0.75rem; /*12px;*/
   font-weight:bold;
-  box-shadow:0 12px var(--color-shadow);
+  box-shadow:0 0.75rem var(--color-shadow);
   color:var(--color-dark);
   display:flex;
   flex-direction:column;
@@ -675,7 +666,7 @@ button{
   white-space: nowrap;     /* 改行を禁止 */
   text-overflow: ellipsis; /* はみ出しを防止 */
   font-size: clamp(1rem, 2.5rem, 3rem); /* ←自動スケール 最小、推奨、最大 */
-  background-Size:calc(100% - 24px) auto;
+  background-Size:calc(100% - 1.5rem) auto; /*24px;*/
 }
 
 .buttons.two-row button{
@@ -689,13 +680,13 @@ button.three-word{
 button.pressed{
   background-color:var(--color-dark);
   color:var(--color-text);
-  transform:translateY(6px);
-  box-shadow:0 2px #002f66;
+  transform:translateY(0.375rem);
+  box-shadow:0 0.125rem #002f66;
   transition:all .1s ease;
 }
 
 .mikiri button{
-  border:7px solid var(--color-mikiri);
+  border:0.4375rem solid var(--color-mikiri);
   color:var(--color-mikiri);
   background-image: url("images/mikiri.png");
   background-size: contain;     /* 正方形画像の比率維持 */
@@ -713,7 +704,7 @@ button.pressed{
 }
 
 .renda button{
-  border:7px solid var(--color-renda);
+  border:0.4375rem solid var(--color-renda);
   color:var(--color-renda);
   background-image: url("images/renda.png");
   background-size: contain;     /* 正方形画像の比率維持 */
@@ -731,18 +722,18 @@ button.pressed{
 }
 
 button img{
-  max-width:60%; margin-top:0.5dvh; border-radius:6px;
+  max-width:60%; margin-top:0.5dvh; border-radius:0.375rem;
 }
 
 button.imgbtn{
   background-Repeat:no-repeat;
   background-Position:center;
-  padding:10px; 
+  padding:0.625rem;  /* 10px */
 }
 button.imgbtn.pressed{
   background-Repeat:no-repeat;
   background-Position:center;
-  padding:10px; 
+  padding:0.625rem;  /* 10px */
   background-color:#FFFFFF;
 }
 
@@ -896,8 +887,8 @@ button.imgbtn.pressed{
   font-weight: bold;
   color: white;
   text-shadow:
-    0 0 8px rgba(255,255,255,0.8),
-    0 0 12px rgba(100,200,255,0.6);
+    0 0 0.5rem rgba(255,255,255,0.8),
+    0 0 0.75rem rgba(100,200,255,0.6);
   opacity: 0;
   /* animation: scoreGlow 1s ease-out 0.4s forwards; */
 }
@@ -910,15 +901,15 @@ button.imgbtn.pressed{
   50% {
     opacity: 1;
     text-shadow:
-      0 0 25px rgba(255,255,255,1),
-      0 0 60px rgba(120,220,255,1),
-      0 0 90px rgba(150,240,255,0.9);
+    0 0 1.5625rem rgba(255,255,255,1),      /* 25px */
+    0 0 3.75rem   rgba(120,220,255,1),      /* 60px */
+    0 0 5.625rem  rgba(150,240,255,0.9);    /* 90px */
   }
   100% {
     opacity: 1;
     text-shadow:
-      0 0 6px rgba(255,255,255,0.8),
-      0 0 12px rgba(100,200,255,0.6);
+      0 0 0.375rem rgba(255,255,255,0.8),
+      0 0 0.75rem rgba(100,200,255,0.6);
   }
 }
 
@@ -1002,16 +993,16 @@ button.imgbtn.pressed{
   z-index:2500;
 }
 .loading-bar{
-  width:60%;height:10px;
-  border: 3px solid var(--color-dark);
+  width:60%;height:0.625rem;  /* 10px */
+  border: 0.1875rem solid var(--color-dark);
   background:var(--color-dark);
-  border-radius:10px;
+  border-radius:0.625rem;  /* 10px */
   overflow:hidden;margin-top:1rem;
 }
 .loading-progress{
   width:0%;height:100%;
   background:var(--color-light);
-  border-radius:10px;
+  border-radius:0.625rem;  /* 10px */
   transition:width 3s linear;
 }
 
@@ -1042,18 +1033,19 @@ button.imgbtn.pressed{
   color:white;
   text-align:center;
   text-shadow:
-    -3px -3px 0 var(--color-dark),
-     0   -3px 0 var(--color-dark),
-     3px -3px 0 var(--color-dark),
-    -3px  0   0 var(--color-dark),
-     3px  0   0 var(--color-dark),
-    -3px  3px 0 var(--color-dark),
-     0    3px 0 var(--color-dark),
-     3px  3px 0 var(--color-dark),
-    -2px -2px 0 var(--color-dark),
-     2px -2px 0 var(--color-dark),
-    -2px  2px 0 var(--color-dark),
-     2px  2px 0 var(--color-dark);
+    -0.1875rem -0.1875rem 0 var(--color-dark), /* -3px */
+    0         -0.1875rem 0 var(--color-dark),
+    0.1875rem -0.1875rem 0 var(--color-dark),
+    -0.1875rem  0         0 var(--color-dark),
+    0.1875rem  0         0 var(--color-dark),
+    -0.1875rem  0.1875rem 0 var(--color-dark),
+    0          0.1875rem 0 var(--color-dark),
+    0.1875rem  0.1875rem 0 var(--color-dark),
+    -0.125rem  -0.125rem  0 var(--color-dark), /* -2px */
+    0.125rem  -0.125rem  0 var(--color-dark),
+    -0.125rem   0.125rem  0 var(--color-dark),
+    0.125rem   0.125rem  0 var(--color-dark);
+
 }
 
 #stage-msg,
@@ -1129,5 +1121,5 @@ button.imgbtn.pressed{
 /* アニメーション */
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  50% { transform: translateY(-0.3125rem); }
 }

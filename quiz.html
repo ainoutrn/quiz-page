@@ -76,6 +76,7 @@ const stageData=[
 ]
 
 var isHiroshi = false;
+var kasoku = false;
 
 function checkOrientation() {
   const isLandscape = window.matchMedia('(orientation: landscape)').matches;
@@ -244,6 +245,14 @@ window.addEventListener('resize', checkOrientation);
 
 <script>
 checkOrientation();
+
+document.body.addEventListener("click", () => {
+  kasoku=true;
+  if(document.getElementById('buttons').style.display != "none"){
+    quizFinaly();
+    kasoku=false;
+  }
+});
 
 const loading=document.getElementById('loading-overlay');
 const loadingProgress=document.getElementById('loadingProgress');
@@ -417,6 +426,7 @@ function showQuestion(){
   
   if(nowStage.stage==0){
     quizNo.innerHTML=q.quiztype;
+    hideTimer();
   }else if(q.question=="今何問目？"){
     quizNo.innerHTML="Q？" + "　" + q.quiztype;
   }
@@ -530,8 +540,9 @@ function showQuestionMain(){
   }
   
   initButtonTouchEvents();
-  startTimer();
-
+  if(nowStage.stage > 0){
+    startTimer();
+  }
   if(q.music && q.music !=''){
     playSound(q.music);
   }
@@ -573,6 +584,8 @@ function setButtons(){
       btn.onclick=()=> {
         if(q.mode=='renda'){
           handleRenda(opt.text);
+        }else if(nowStage.stage==0){
+          handleAnswer(opt.text);
         }else if(startTime==0){
           suka();
         }else{
@@ -737,6 +750,7 @@ function handleAnswer(selected){
 
     setTimeout(() => {
       if(q.quiztype=='質問3' && selected=='いいえ'){
+        isHiroshi = false;
         currentIndex=0;
         stageQuizIdx=0;
         showQuestion();
@@ -1096,8 +1110,8 @@ function showNextStage(){
       }
     }
 
-    if(testMode){
-      //upPt = 0.01;
+    if(kasoku){
+      upPt *= 3;
     }
 
     if(upPt < 0) upPt = 0;
@@ -1227,26 +1241,13 @@ function showNextStageFinaly(){
     //bgm.volume = 0.5;
     playSound('lvup', 0.3);
 
-    /*
-    if(nowStage.stage==FINAL_STAGE){
-      bgm.pause();
-
-      setTimeout(() => {
-        //みちよスタート！！
-        bgm_michiyo.volume = 1.0;
-        bgm_michiyo.play();
-
-        setTimeout(() => {
-          count = 3;
-          showCountdown();
-        }, 400);
-        
-      }, 3000);
-
-    }*/
-
     setTimeout(() => {
-      count = 3;
+      if(kasoku){
+        kasoku = false;
+        count = 0;
+      }else{
+        count = 3;
+      }
       showCountdown();
     }, 2000);
 
