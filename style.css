@@ -313,6 +313,12 @@ body.hide {
     margin-top: 1.5625rem; /* 25px */
 }
 
+#first-confirm #back.pressed{
+  color:white;
+  background-color:var(--color-shadow);
+  box-shadow:0 0.125rem var(--color-shadow);
+}
+
 /* === クイズコンテナ === */
 .container{
   position: relative;
@@ -739,6 +745,15 @@ button.imgbtn.pressed{
 
 .banner{
   flex: 1;
+}
+
+.banner img {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* === カットイン === */

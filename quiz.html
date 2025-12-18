@@ -67,12 +67,12 @@ const quizData=[
 
 // --- ステージ情報 ---
 const stageData=[
-  {"stage":"0", "loadMsg":"準備しています…", "startMsg":"脳トレの前に、質問です"},
-  {"stage":"1", "loadMsg":"問題を作成しています…", "startMsg":"AI脳トレ スタート！"},
-  {"stage":"2", "loadMsg":"あなたの回答を分析しています…", "startMsg":"少しレベルを上げます！"},
-  {"stage":"3", "loadMsg":"さらに分析しています…", "startMsg":"やりますね！さらにレベルアップ！"},
-  {"stage":"4", "loadMsg":"あなたにあわせて調整しています…", "startMsg":"こんな問題はどうですか？"},
-  {"stage":"5", "loadMsg":"回答データ解析中…", "startMsg":"最終ステージです"},
+  {"stage":"0", "loadMsg":"準備しています…", "startMsg":"脳トレの前に、質問です", "banner":"images/banner_goo.png"},
+  {"stage":"1", "loadMsg":"問題を作成しています…", "startMsg":"AI脳トレ スタート！", "banner":"images/banner_kddi.png"},
+  {"stage":"2", "loadMsg":"あなたの回答を分析しています…", "startMsg":"少しレベルを上げます！", "banner":"images/banner_servicenow.jpg"},
+  {"stage":"3", "loadMsg":"さらに分析しています…", "startMsg":"やりますね！さらにレベルアップ！", "banner":"images/banner_daihatsu.jpg"},
+  {"stage":"4", "loadMsg":"あなたにあわせて調整しています…", "startMsg":"こんな問題はどうですか？", "banner":"images/banner_markx.jpg"},
+  {"stage":"5", "loadMsg":"回答データ解析中…", "startMsg":"最終ステージです", "banner":"images/banner_marukame.gif"},
 ]
 
 var isHiroshi = false;
@@ -239,7 +239,9 @@ window.addEventListener('resize', checkOrientation);
     <div class="timer-bar"><div class="timer-progress" id="timerProgress"></div></div>
   </div>
   <div class="buttons" id="buttons" style="display:none;"></div>
-  <div class="banner" id="banner" ></div>
+  <div class="banner" id="banner" style="display:none;">
+    <image src="images/banner_goo.png" />
+  </div>
   <div id="sukaText">スカ！</div>
 </div>
 
@@ -248,14 +250,10 @@ checkOrientation();
 
 document.getElementById('banner').addEventListener("click", () => {
   kasoku=true;
+  stopTimer();
+  coun=0;
   quizFinaly();
   kasoku=false;
-  /*
-  if(document.getElementById('buttons').style.display != "none"){
-    quizFinaly();
-    kasoku=false;
-  }
-    */
 });
 
 const loading=document.getElementById('loading-overlay');
@@ -1065,6 +1063,7 @@ function showNextStage(){
   document.getElementById('question').style.display = "none";
   document.getElementById('timer-container').style.display = "none";
   document.getElementById('buttons').style.display = "none";
+  document.getElementById('banner').style.display = "";
   
   stageOverlayTitle.style.display = "none";
   stageOverlayLoading.style.display = "";
@@ -1244,6 +1243,9 @@ function showNextStageFinaly(){
 
     //bgm.volume = 0.5;
     playSound('lvup', 0.3);
+
+    //バナー
+    changeBanner(nowStage.banner);
 
     setTimeout(() => {
       if(kasoku){
@@ -1653,20 +1655,6 @@ function playSound(name, vol = 1.0){
     a.play();
   }
 }
-/*
-function fadeOutAudio(audio, duration = 500){
-  const step = 50;
-  const volDown = audio.volume / (duration / step);
-  const timer = setInterval(() => {
-    audio.volume = Math.max(0, audio.volume - volDown);
-    if(audio.volume <= 0){
-      clearInterval(timer);
-      audio.pause();
-      audio.currentTime = 0;
-    }
-  }, step);
-}
-  */
 
 // 初期セットアップ（1回だけ）
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -1698,12 +1686,14 @@ function fadeVolume(gainNode, targetVolume = 0.3, duration = 0.5){
   gainNode.gain.linearRampToValueAtTime(targetVolume, now + duration);
 }
 
-
+function changeBanner(bannerSrc){
+  document.querySelector('.banner img').src = bannerSrc;
+}
 
 
 // ==== スマホ向けボタン押下制御 ====
 function initButtonTouchEvents() {
-  const buttons = document.querySelectorAll('.buttons button');
+  const buttons = document.querySelectorAll('button'); //.buttons button
   buttons.forEach(btn => {
     let isInside = false;
 
