@@ -239,19 +239,23 @@ window.addEventListener('resize', checkOrientation);
     <div class="timer-bar"><div class="timer-progress" id="timerProgress"></div></div>
   </div>
   <div class="buttons" id="buttons" style="display:none;"></div>
-  <div class="banner" id="banner" style=""></div>
+  <div class="banner" id="banner" ></div>
   <div id="sukaText">スカ！</div>
 </div>
 
 <script>
 checkOrientation();
 
-document.body.addEventListener("click", () => {
+document.getElementById('banner').addEventListener("click", () => {
   kasoku=true;
+  quizFinaly();
+  kasoku=false;
+  /*
   if(document.getElementById('buttons').style.display != "none"){
     quizFinaly();
     kasoku=false;
   }
+    */
 });
 
 const loading=document.getElementById('loading-overlay');
