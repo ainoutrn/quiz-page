@@ -67,17 +67,9 @@ body::before {
   font-size: 1em;
   font-weight: bold;
   text-align: left;
-  margin-top: 5dvh;
   opacity: 0;
 }
 .line5 {
-  font-size: 1em;
-  font-weight: bold;
-  text-align: left;
-  margin-top: 5dvh;
-  opacity: 0;
-}
-.line6 {
   font-size: 1em;
   font-weight: bold;
   text-align: left;
@@ -172,6 +164,52 @@ body::before {
   0%   { transform: scale(1); opacity:1;}
   100%  { transform: scale(1); opacity:0;}
 }
+
+
+.line6 {
+  font-weight: bold;
+  opacity: 0;
+  position: fixed;
+  left: 0;
+  bottom: 5dvh;
+  width: 100%;
+  height:20dvh;
+  display: block;
+}
+
+:root {
+  --color-dark: #002060;
+  --color-light: #3399FF;
+  --color-bg-top: #3399FF;
+  --color-bg-bottom: #0056b3;
+  --color-shadow: #555555;
+  --color-text: white;
+}
+
+button{
+  background:white;
+  border:0.3rem solid var(--color-dark);
+  outline:0.15rem solid white;
+  border-radius:0.5rem; /* 12px */
+  font-size:1rem;
+  font-weight:bold;
+  padding:1vh 0;
+  box-shadow:0 0.5rem var(--color-shadow);
+  color:var(--color-dark);
+  width:80dvw;
+  left:10dvw;
+  margin-top:3dvh;
+  margin-left:10dvw;
+  margin-right:10dvw;
+  cursor:pointer;
+}
+button.pressed{
+  background:var(--color-dark);
+  color:var(--color-text);
+  transform: translateY(0.3rem)!important;
+  box-shadow:0 0.125rem #002f66;
+  transition:all .1s ease;
+}
 </style>
 </head>
 <body>
@@ -212,13 +250,22 @@ body::before {
     </div>
   </div>
   <div class="line6">
-    <br>
-    <button id='start' onclick="infiniteMode();">回答時間無限・観察モード</button>
-    <button id='back' onclick="back(this);">TOPへ戻る</button>
+    <button id='start' onclick="infiniteMode();">時間無制限モードでもう一度</button>
+    <button id='back' onclick="back();">TOPへ戻る</button>
   </div>
 </div>
 
 <script>
+function infiniteMode(){
+  setTimeout(()=>{
+    location.href = 'quiz.html#infiniteMode=true';
+  },1000);
+}
+function back(){
+  setTimeout(()=>{
+    location.href = 'start.html';
+  },1000);
+}
 
 const imageUrls = ["kawashima.png", "kawashima2.png", "pico.png"];
 const face = document.getElementById('face');
@@ -228,6 +275,7 @@ const line2 = document.querySelector('.line2');
 const line3 = document.querySelector('.line3');
 const line4 = document.querySelector('.line4');
 const line5 = document.querySelector('.line5');
+const line6 = document.querySelector('.line6');
 
 // すべての画像がロード完了してからアニメーション開始
 Promise.all(imageUrls.map(src => new Promise(resolve => {
@@ -248,6 +296,7 @@ const timeline = [
   { time: 6.0, action: () => omedetou() },
   { time: 7.0, action: () => showScore() },
   { time: 12.0, action: () => showTomoTatsu() },
+  { time: 13.0, action: () => line6.style.animation = "showLine 0.5s forwards" },
 ];
 
 let idx = 0;
@@ -268,6 +317,7 @@ bgm.addEventListener("play", () => {
 });
 
 function upKawashima(){
+  document.getElementById('first-tap-area').style.display = "none";
   stopFloat();
   
   face.src = "kawashima2.png";
@@ -314,71 +364,11 @@ function showTomoTatsu(){
 }
 
 function tap(){
-  if(executed) retuen;
+  if(executed) return;
   executed = true;
 
   document.getElementById('first-tap-area').classList.add('hide');
   bgm.play();
-
-  /*
-  setTimeout(() => {
-    line1.style.animation = "showLine 0.01s forwards";
-  }, 1100);
-
-  // ① 3秒後：上昇開始
-  setTimeout(() => {
-    stopFloat();
-    
-    face.src = "kawashima2.png";
-    // 画像が読み込まれたら上昇を開始
-    face.onload = () => {
-      face.style.transition = "transform 0.8s ease-in";
-      face.style.opacity = "1";
-      face.style.transform = "translateY(-40dvh)";
-    };
-    
-  }, 3000);
-
-  // ② 画像差し替え → 下に落ちる
-  setTimeout(() => {
-    face.src = "pico.png";
-    face.onload = () => {
-      face.style.transition = "transform 0.2s ease-out";
-      face.style.transform = "translateY(0)";
-    }
-  }, 4500);
-
-  // ③ 60才を表示
-  setTimeout(() => {
-    line2.style.animation = "showLine 0.01s forwards";
-    strike.classList.add("exec");
-
-    //還暦おめでとう
-    line3.style.animation = "showLine 0.5s forwards";
-
-    //紙吹雪
-    startConfetti(); 
-
-    //ふわふわ再開
-    startFloat();
-    face.style.animation = "showLine 0s forwards, float 0.5s ease-in-out infinite";
-    
-    //スコア
-    setTimeout(() => {
-      line4.style.animation = "showLine 0.5s forwards";
-      const hash = window.location.hash;
-      const scoreValue = hash.replace('#score=', '');
-      addScore(scoreValue, 5.2);
-      //document.getElementById('score-value').textContent = scoreValue;
-    }, 1000);
-
-    //開発者
-    setTimeout(() => {
-      line5.style.animation = "showLine 0.5s forwards";
-    }, 4500);
-
-  }, 5000);
-  */
 }
 
 
@@ -519,6 +509,46 @@ function playSound(target){
 }
 
 
+// ==== スマホ向けボタン押下制御 ====
+function initButtonTouchEvents() {
+  const buttons = document.querySelectorAll('button'); 
+  buttons.forEach(btn => {
+    let isInside = false;
+
+    btn.addEventListener('touchstart', () => {
+      isInside = true;
+      btn.classList.add('pressed');
+    });
+
+    btn.addEventListener('touchmove', e => {
+      const touch = e.touches[0];
+      const rect = btn.getBoundingClientRect();
+      const inside =
+        touch.clientX >= rect.left &&
+        touch.clientX <= rect.right &&
+        touch.clientY >= rect.top &&
+        touch.clientY <= rect.bottom;
+      if (inside && !isInside) {
+        btn.classList.add('pressed');
+        isInside = true;
+      } else if (!inside && isInside) {
+        btn.classList.remove('pressed');
+        isInside = false;
+      }
+    });
+
+    btn.addEventListener('touchend', e => {
+      e.preventDefault(); // ←追加：ブラウザのclick発火を防ぐ    
+      if (isInside) {
+        btn.onclick();
+      } else {
+        btn.classList.remove('pressed');
+      }
+      isInside = false;
+    });
+  });
+}
+initButtonTouchEvents();
 </script>
 </body>
 </html>
