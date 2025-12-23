@@ -82,9 +82,9 @@ body {
 }
 
 /* タブレット調整 */
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   html {
-    font-size: 150%;
+    font-size: 200%;
   }
 }
 
@@ -335,7 +335,7 @@ body.hide {
 /* === ステージ情報エリア === */
 .stage-info {
   position: relative; 
-  margin: 0 auto 2dvh; 
+  margin: 0 auto 1.5dvh; 
   display: flex;
   align-items: center;
   line-height: 1;
@@ -347,12 +347,12 @@ body.hide {
   padding: 0.5rem 1rem;
   font-weight: bold;
   font-size: 1rem;
-  box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.3);
+  /*box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.3);*/
   z-index: 1500;
   backdrop-filter: blur(0.1875rem);
 
   opacity: 0;
-  top: 5vw;
+  top: 3vw;
   left: 50%;
   transform: translate(-50%, -50%) scaleX(0); /* ← 幅0から開始 */
   transform-origin: center; /* ← 中央から左右に広がる */
@@ -679,8 +679,17 @@ button{
   background-Size:calc(16dvh), auto;
 }
 
-button.three-word{
+.buttons.three-word button{
   font-size:2rem;
+}
+
+.buttons.long-word button{
+  font-size:clamp(1rem, 1.2rem, 3rem);
+  white-space: normal;      /* 折り返し許可 */
+  word-break: break-word;   /* 長い単語を分割 */
+  overflow-wrap: anywhere;  /* 幅超過時に強制改行 */
+  text-overflow: unset;     /* ellipsis不要 */
+  height: 12dvh;
 }
 
 button.pressed{
@@ -752,8 +761,13 @@ button.imgbtn.pressed{
   left: 0;
   bottom: 0;
   width: 100%;
+  background-color: var(--color-dark);
   height: auto;
   display: block;
+}
+
+.banner img.trans{
+  opacity: 0.5;
 }
 
 /* === カットイン === */

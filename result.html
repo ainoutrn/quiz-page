@@ -27,10 +27,10 @@ body::before {
   pointer-events: none;
 }
 
-/* タブレット調整 */
-@media (min-width: 768px) {
+/* タブレット調整 768px */
+@media (min-width: 700px) {
   html {
-    font-size: 150%;
+    font-size: 200%;
   }
 }
 
@@ -258,7 +258,7 @@ button.pressed{
 <script>
 function infiniteMode(){
   setTimeout(()=>{
-    location.href = 'quiz.html#infiniteMode=true';
+    location.href = 'quiz.html#infiniteMode';
   },1000);
 }
 function back(){
