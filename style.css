@@ -561,7 +561,7 @@ body.hide {
 
 #sukaText {
   position: fixed;
-  top: 35%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 2rem;
@@ -657,6 +657,7 @@ body.hide {
 .buttons:has(button:nth-child(3):last-child) button {
   max-width: 30%;
   font-size: clamp(1rem, 1.2rem, 2.5rem);
+  background-Size:calc(100% - 0.5rem) auto;
 }
 
 .buttons:has(button:nth-child(4):last-child) button {
@@ -769,7 +770,7 @@ button.imgbtn.pressed{
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: var(--color-dark);
+  background-color: var(--color-light);
   height: auto;
   display: block;
   height: 12.4dvw;
