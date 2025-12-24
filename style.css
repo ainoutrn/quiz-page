@@ -280,13 +280,13 @@ body.hide {
   display: flex;
   align-items: flex-start; /* アイコンを上に揃える */
   gap: 0.5rem;    /* 8px */                /* アイコンとテキストの間隔 */
-  margin-top: 0.625rem;  /* 10px */
+  /* margin-top: 0.625rem;   10px */
   width: 80vw;
 }
 
 .audio-info .icon {
-  width: 24vw;  /* 正方形サイズ */
-  height: 24vw;
+  width: 22dvw;  /* 正方形サイズ */
+  height: 22dvw;
   flex-shrink: 0; /* アイコンの縮小を防ぐ */
   border:0.0625rem solid rgba(255,255,255,0.6);
   border-radius:8px;
@@ -303,20 +303,21 @@ body.hide {
 }
 
 #first-confirm button {
-    width: 50vw;
-    height: 10dvh;
-    padding: 0.3125rem; /* 5px */
-    font-size: 1.5rem;
-    border-radius: 0.625rem;  /* 10px */
+  width: 50vw;
+  height: 10dvh;
+  padding: 0.3125rem; /* 5px */
+  font-size: 1.5rem;
+  border-radius: 0.625rem;  /* 10px */
+  margin-top: 1dvh;
 }
 
 #first-confirm #back{
-    height: 7dvh;
-    font-size: 1.2rem;
-    color:var(--color-shadow);
-    border: 0.3125rem solid var(--color-shadow);
-    border-radius: 0.625rem;  /* 10px */
-    margin-top: 1.5625rem; /* 25px */
+  height: 7dvh;
+  font-size: 1.2rem;
+  color:var(--color-shadow);
+  border: 0.3125rem solid var(--color-shadow);
+  border-radius: 0.625rem;  /* 10px */
+  margin-top: 1.5625rem; /* 25px */
 }
 
 #first-confirm #back.pressed{
@@ -677,6 +678,7 @@ button{
   align-items:center;
   white-space: nowrap;     /* 改行を禁止 */
   text-overflow: ellipsis; /* はみ出しを防止 */
+  overflow:hidden;
   font-size: clamp(1rem, 2.5rem, 3rem); /* ←自動スケール 最小、推奨、最大 */
   background-Size:calc(100% - 1.5rem) auto; /*24px;*/
 }
@@ -770,6 +772,9 @@ button.imgbtn.pressed{
   background-color: var(--color-dark);
   height: auto;
   display: block;
+  height: 12.4dvw;
+  max-height: 12.4dvw;
+  z-index: 9999;
 }
 
 .banner img.trans{
