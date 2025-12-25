@@ -81,6 +81,17 @@ body {
   -webkit-touch-callout: none; /* 画像長押しメニュー無効 */
 }
 
+/* 画像にも適用 */
+img {
+  pointer-events: none; /* ドラッグや右クリック防止 */
+}
+
+* {
+  touch-action: manipulation; /* ダブルタップ拡大防止 */
+  -webkit-user-select: none; /* テキスト選択も防ぐ場合 */
+  -webkit-tap-highlight-color: transparent; /* iOSのタップハイライト除去 */
+}
+
 /* タブレット調整 */
 @media (min-width: 700px) {
   html {
@@ -105,16 +116,6 @@ body {
   z-index:999999;
 }
 
-/* 画像にも適用 */
-img {
-  pointer-events: none; /* ドラッグや右クリック防止 */
-}
-
-* {
-  touch-action: manipulation; /* ダブルタップ拡大防止 */
-  -webkit-user-select: none; /* テキスト選択も防ぐ場合 */
-  -webkit-tap-highlight-color: transparent; /* iOSのタップハイライト除去 */
-}
 /* 背景パターン定義 */
 body {
   position:relative;
@@ -794,6 +795,7 @@ button.imgbtn.pressed{
   z-index: 9000;
   opacity: 0;
   pointer-events: none;
+  width:100%;
 }
 
 .cutin.active{
@@ -888,6 +890,7 @@ button.imgbtn.pressed{
 /* 連打回数/見切り秒数 */
 #countSvg {
   height:20dvh; 
+  width:100dvw;
   margin-top:1dvh; 
   margin-bottom:0dvh; 
   animation: redCircleExpand 0.4s ease-out forwards;

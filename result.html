@@ -27,6 +27,26 @@ body::before {
   pointer-events: none;
 }
 
+/* 文字選択・画像保存などを禁止 */
+body {
+  -webkit-user-select: none; /* 文字選択禁止 */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none; /* 画像長押しメニュー無効 */
+}
+
+/* 画像にも適用 */
+img {
+  pointer-events: none; /* ドラッグや右クリック防止 */
+}
+
+* {
+  touch-action: manipulation; /* ダブルタップ拡大防止 */
+  -webkit-user-select: none; /* テキスト選択も防ぐ場合 */
+  -webkit-tap-highlight-color: transparent; /* iOSのタップハイライト除去 */
+}
+
 /* タブレット調整 768px */
 @media (min-width: 700px) {
   html {
@@ -198,7 +218,7 @@ button{
   outline:0.15rem solid white;
   border-radius:0.5rem; /* 12px */
   font-size:1rem;
-  font-weight:bold;
+  font-weight:bolder;
   padding:1vh 0;
   box-shadow:0 0.5rem var(--color-shadow);
   color:var(--color-dark);
