@@ -9,13 +9,17 @@
 
 .landscape::before{
   font-size: large;
-  content:"縦向きで表示してください";
+  content:"このアプリはスマートフォン専用です。";
   position:fixed; inset:0;
   background:#000; color:#fff;
   display:flex; align-items:center; justify-content:center;
   height: 100dvh;
   width: 100dvw;
   z-index:999999;
+}
+
+.ios .landscape::before{
+  content:"縦向きでご利用ください";
 }
 
 :root {
@@ -139,7 +143,7 @@ body {
   display: flex;
   height: 100%;
   /* 幅は自動で横長画像に合わせる */
-  animation: scroll 20s linear infinite;
+  animation: scroll 60s linear infinite;
 }
 
 .scroll-bg img {
@@ -347,6 +351,14 @@ body {
 </div>
 
 <script>
+  
+if (
+  /iPhone|iPad/.test(navigator.userAgent) ||
+  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+) {
+  document.documentElement.classList.add('ios');
+}
+
 function checkOrientation() {
   const isLandscape = window.matchMedia('(orientation: landscape)').matches;
   document.body.classList.toggle('landscape', isLandscape);
@@ -461,7 +473,7 @@ window.addEventListener('load', () => {
   
   // 0. 背景フェードイン
   setTimeout(() => {
-    bg.style.animation = "scroll 20s linear infinite, showImg 4s forwards";
+    bg.style.animation = "scroll 70s linear infinite, showImg 4s forwards";
   }, 500);
 
   // 1. アイコン拡大→縮小セット＆フェードイン
