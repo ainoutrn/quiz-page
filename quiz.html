@@ -11,7 +11,7 @@
 <script>
 
 var testMode = false; //テスト時にローディングを高速化できる
-const FINAL_STAGE = 1;
+const FINAL_STAGE = 5;
 
 // --- 問題データ ---
 const quizData=[
@@ -280,6 +280,9 @@ window.addEventListener("load", () => {
   preloadSounds(['count','point','seikai','huseikai', 'lvup']);
 
   const imageUrls = new Set();
+  //みちよ画像
+  imageUrls.add(`images/michiyo.gif`);
+
   imageUrls.add('images/maru.png');
   imageUrls.add('images/batsu.png');
   imageUrls.add('images/renda.png');
@@ -302,8 +305,6 @@ window.addEventListener("load", () => {
     if (q.banner) imageUrls.add(q.banner);
   });
 
-  //みちよ画像
-  imageUrls.add(`images/michiyo.gif`);
   for (let i = 0; i <= 30; i++) {
     imageUrls.add(`images/logo_michi_${i}.png`);
   }
