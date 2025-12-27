@@ -11,7 +11,7 @@
 <script>
 
 var testMode = false; //テスト時にローディングを高速化できる
-const FINAL_STAGE = 5;
+const FINAL_STAGE = 1;
 
 // --- 問題データ ---
 const quizData=[
@@ -45,7 +45,7 @@ const quizData=[
   {"stage":"4","mode":"","quiztype":"長期記憶力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"若いのは？","image":"","music":"","image2":"","image2time":"","options":[{"text":"images/mickey1.png"},{"text":"images/mickey2.png"},{"text":"images/mickey3.png"},{"text":""}],"correct":"images/mickey2.png","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
   {"stage":"4","mode":"","quiztype":"長期記憶力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"1978年の​日本レコード大賞は？​","image":"","music":"","image2":"","image2time":"","options":[{"text":"images/record1.png"},{"text":"images/record2.png"},{"text":"images/record3.png"},{"text":"images/record4.png"}],"correct":"images/record1.png","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
   {"stage":"4","mode":"","quiztype":"長期記憶力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"聖子ちゃんは？","image":"","music":"","image2":"","image2time":"","options":[{"text":"images/seiko1.png"},{"text":"images/seiko2.png"},{"text":"images/seiko3.png"},{"text":""}],"correct":"images/seiko2.png","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
-  {"stage":"4","mode":"","quiztype":"長期記憶力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"1974年の​新語・流行語大賞は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"あっと​驚く<br>​タメゴロー"},{"text":"オジン オバン"},{"text":"普通の​女の​子に<br>​戻りたい"},{"text":"巨人軍は​永久に<br>​不滅です"}],"correct":"巨人軍は​永久に<br>​不滅です","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
+  {"stage":"4","mode":"","quiztype":"長期記憶力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"1974年の​新語・流行語大賞は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"あっと​驚く​タメゴロー"},{"text":"オジン オバン"},{"text":"普通の​女の​子に​戻りたい"},{"text":"巨人軍は​永久に​不滅です"}],"correct":"巨人軍は​永久に​不滅です","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
   {"stage":"4","mode":"mikiri","quiztype":"運動神経伝達力","beforeTxt":"もぐらが出たらたたけ！","beforeImg":"images/mogudot1.png","beforeMusic":"","beforeTime":"7000","question":"もぐらが出たらたたけ！","image":"images/mogudot2.png","music":"","image2":"","image2time":"","options":[{"text":"左"},{"text":"右"},{"text":""},{"text":""}],"correct":"右","answerPict":"","rand":false,"answertime":4000,"answerstart":4000,"perfect":3500,"excellent":3000,"great":2000,"good":1000,"safe":0,"banner":""},
   {"stage":"4","mode":"","quiztype":"長期記憶力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"マフラーは何色？","image":"images/009.png","music":"","image2":"","image2time":"","options":[{"text":"赤"},{"text":"黄"},{"text":"青"},{"text":"紫"}],"correct":"赤","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
   {"stage":"4","mode":"","quiztype":"長期記憶力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"最終回「□□□陽はまた昇る」","image":"images/triton.png","music":"","image2":"","image2time":"","options":[{"text":"images/triton_a.png"},{"text":"images/triton_b.png"},{"text":"images/triton_c.png"},{"text":""}],"correct":"images/triton_a.png","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
@@ -63,7 +63,7 @@ const quizData=[
   {"stage":"5","mode":"renda","quiztype":"運動神経伝達力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"連打して！","image":"images/pico_up.png","music":"","image2":"images/pico_down.png","image2time":"","options":[{"text":"連打!"},{"text":""},{"text":""},{"text":""}],"correct":"","answerPict":"","rand":false,"answertime":5000,"answerstart":5000,"perfect":50,"excellent":40,"great":30,"good":20,"safe":10,"banner":"images/banner_michi3.png"},
   {"stage":"5","mode":"mikiri","quiztype":"運動神経伝達力","beforeTxt":"もぐらが出たらたたけ！","beforeImg":"images/anagachi_0.png","beforeMusic":"","beforeTime":"13000","question":"もぐらが出たらたたけ！","image":"images/anagachi_mogu.png","music":"","image2":"","image2time":"","options":[{"text":"左上"},{"text":"右上"},{"text":"左下"},{"text":"右下"}],"correct":"左下","answerPict":"","rand":false,"answertime":4000,"answerstart":4000,"perfect":3500,"excellent":3000,"great":2000,"good":1000,"safe":0,"banner":"images/banner_anagachi1.png"},
   {"stage":"5","mode":"","quiztype":"聴力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"みちよって何回言った？","image":"images/kiite.png","music":"","image2":"","image2time":"","options":[{"text":"33"},{"text":"34"},{"text":"35"},{"text":"36"}],"correct":"34","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0,"banner":"images/banner_suno.png"},
-  {"stage":"5","mode":"","quiztype":"最終確認","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたは<br>吉田道代<br>ですね？","image":"","music":"","image2":"","image2time":"","options":[{"text":"はい"},{"text":"はい"},{"text":"はい"},{"text":"はい"}],"correct":"はい","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0,"banner":""},  
+  {"stage":"5","mode":"","quiztype":"最終確認","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたは<br>吉田道代<br>ですね？","image":"","music":"","image2":"","image2time":"","options":[{"text":"はい"},{"text":""},{"text":""},{"text":""}],"correct":"","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0,"banner":""},  
 ];
 
 // --- ステージ情報 ---
@@ -73,7 +73,7 @@ const stageData=[
   {"stage":"2", "loadMsg":"あなたの回答を分析しています…", "startMsg":"少しレベルを上げます！", "banner":"images/banner_servicenow.jpg"},
   {"stage":"3", "loadMsg":"さらに分析しています…", "startMsg":"やりますね！さらにレベルアップ！", "banner":"images/banner_dp.png"},
   {"stage":"4", "loadMsg":"あなたにあわせて調整しています…", "startMsg":"推定年代の問題です", "banner":"images/banner_mitsu.jpg"},
-  {"stage":"5", "loadMsg":"回答データ解析中…", "startMsg":"最終ステージです", "banner":"images/banner_trans.png"},
+  {"stage":"5", "loadMsg":"回答データ解析中…", "startMsg":"最終ステージです", "banner":""},
 ]
 
 var isHiroshi = false;
@@ -1085,7 +1085,9 @@ function showNextStage(){
   document.getElementById('question').style.display = "none";
   document.getElementById('timer-container').style.display = "none";
   document.getElementById('buttons').style.display = "none";
-  document.getElementById('banner').style.display = "";
+  if(bannerImg.src != ''){
+    document.getElementById('banner').style.display = "";
+  }
   
   stageOverlayTitle.style.display = "none";
   stageOverlayLoading.style.display = "";
@@ -1100,7 +1102,7 @@ function showNextStage(){
     stageText.textContent = ``;
   }else if(nowStage.stage == FINAL_STAGE){
     stageText.textContent = `FINAL STAGE`;
-    changeBanner('images/banner_trans.png');
+    document.getElementById('banner').style.display = "none";
   }else{
     stageText.textContent = `STAGE ` + nowStage.stage;
   }
@@ -1165,10 +1167,13 @@ function showNextStage(){
           document.getElementById('img-wrap').classList.add('michi');
           document.getElementById('loading-logo').src = 'images/logo_michi_' + iconID + '.png';
 
-          var michiTop = 25 + 2.5 / 15 * (30 - nextIconID);
-          var michiHeight = 20 + 5 / 15 * (nextIconID -15);
-          document.getElementById('img-wrap').style.top = '';
-          document.getElementById('loading-logo').style.height = `${michiHeight}dvh`;
+          //var michiHeight = 20 + 5 / 15 * (nextIconID -15);
+          if(nextIconID <= 25){
+            //var michiTop = 25 + 2.5 / 10 * (25 - nextIconID);
+            document.getElementById('img-wrap').style.top = '';
+            var michiHeight = 20 + 5 / 10 * (nextIconID -15);
+            document.getElementById('loading-logo').style.height = `${michiHeight}dvh`;
+          }
         }else{
           document.getElementById('loading-logo').src = 'images/logo_michi_' + iconID + '.png';
         }
@@ -1194,7 +1199,6 @@ function showNextStage(){
         setTimeout(() => {
           //みちよスタート！！
           playSound('michiyo');
-          changeBanner('images/banner_trans.png');
           //カラフルBG
           setTimeout(() => {
             changeBGColor(3);
@@ -1721,13 +1725,18 @@ function fadeVolume(gainNode, targetVolume = 0.3, duration = 0.5){
   gainNode.gain.linearRampToValueAtTime(targetVolume, now + duration);
 }
 
+const bannerImg = document.querySelector('.banner img');
+
 function changeBanner(bannerSrc){
-  const img = document.querySelector('.banner img');
-  img.src = bannerSrc;
+
+  if(bannerSrc=='') return;
+
+  document.getElementById('banner').style.display = "";
+  bannerImg.src = bannerSrc;
   if(bannerSrc=='images/banner_mother2.gif'){
-    img.classList.add('trans');
+    bannerImg.classList.add('trans');
   }else{
-    img.classList.remove('trans');
+    bannerImg.classList.remove('trans');
   }
 
 }
