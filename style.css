@@ -740,6 +740,7 @@ button.pressed{
 .renda button.pressed{
   background:#FFFFFF;
   /* color:var(--color-renda);*/
+  color:var(--color-dark);
   background-image: url("images/renda.png");
   background-size: contain;     /* 正方形画像の比率維持 */
   background-repeat: no-repeat;

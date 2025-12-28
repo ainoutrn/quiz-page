@@ -28,7 +28,7 @@ const quizData=[
   {"stage":"1","mode":"mikiri","quiztype":"運動神経伝達力","beforeTxt":"もぐらが出たらたたけ！","beforeImg":"images/mogu1.png","beforeMusic":"","beforeTime":"8000","question":"もぐらが出たらたたけ！","image":"images/mogu2.png","music":"","image2":"","image2time":"","options":[{"text":"たたく"},{"text":""},{"text":""},{"text":""}],"correct":"たたく","answerPict":"","rand":false,"answertime":4000,"answerstart":4000,"perfect":3500,"excellent":3000,"great":2000,"good":1000,"safe":0,"banner":""},
   {"stage":"2","mode":"","quiztype":"注意力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"じゃんけんで負けて！","image":"images/tyoki.png","music":"","image2":"","image2time":"","options":[{"text":"images/goo.png"},{"text":"images/tyoki.png"},{"text":"images/paa.png"},{"text":""}],"correct":"images/paa.png","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
   {"stage":"2","mode":"","quiztype":"注意力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"文字数が多いのは？","image":"images/moji1.png","music":"","image2":"","image2time":"","options":[{"text":"S"},{"text":"A"},{"text":""},{"text":""}],"correct":"S","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
-  {"stage":"2","mode":"kioku","quiztype":"記憶力","beforeTxt":"画像を覚えて！","beforeImg":"images/yatyo.png","beforeMusic":"","beforeTime":"4000","question":"野鳥の数は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"1"},{"text":"2"},{"text":"3"},{"text":"4"}],"correct":"3","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
+  {"stage":"2","mode":"kioku","quiztype":"短期記憶力","beforeTxt":"画像を覚えて！","beforeImg":"images/yatyo.png","beforeMusic":"","beforeTime":"4000","question":"野鳥の数は？","image":"","music":"","image2":"","image2time":"","options":[{"text":"1"},{"text":"2"},{"text":"3"},{"text":"4"}],"correct":"3","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
   {"stage":"2","mode":"","quiztype":"形状判断力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"一番若いのは？","image":"","music":"","image2":"","image2time":"","options":[{"text":"images/egg.png"},{"text":"images/otama.png"},{"text":"images/otama2.png"},{"text":"images/kaeru.png"}],"correct":"images/egg.png","answerPict":"","rand":true,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
   {"stage":"2","mode":"","quiztype":"音感","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"どの音階？","image":"images/kiite.png","music":"re","image2":"","image2time":"","options":[{"text":"ド"},{"text":"レ"},{"text":"ミ"},{"text":"ファ"}],"correct":"レ","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
   {"stage":"2","mode":"","quiztype":"パターン認識力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あてはまるのは？","image":"images/nums.png","music":"","image2":"","image2time":"","options":[{"text":"9"},{"text":"11"},{"text":"13"},{"text":"15"}],"correct":"13","answerPict":"","rand":false,"answertime":20000,"answerstart":20000,"perfect":19000,"excellent":15000,"great":10000,"good":5000,"safe":0,"banner":""},
@@ -1104,6 +1104,8 @@ function showNextStage(){
   }else if(nowStage.stage == FINAL_STAGE){
     stageText.textContent = `FINAL STAGE`;
     document.getElementById('banner').style.display = "none";
+    //不穏なBGM
+    playBGM(nowStage.stage);
   }else{
     stageText.textContent = `STAGE ` + nowStage.stage;
   }
@@ -1485,7 +1487,7 @@ function showCountdown(){
         document.getElementById('timer-container').style.display = "";
         document.getElementById('buttons').style.display = "";
         
-        if(nowStage.stage==1){
+        if(nowStage.stage==FINAL_STAGE || nowStage.stage==1){
 
         }else{
           //BGMスピードを変更
@@ -1536,6 +1538,7 @@ var bgm;
 var bgm2;
 var bgm3;
 var bgm4;
+var bgm5;
 var nowBgm;
 var bgm_michiyo; // = document.getElementById('bgm_michiyo');
 var se_count; // = document.getElementById('se_count');
