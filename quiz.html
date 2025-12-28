@@ -62,7 +62,7 @@ const quizData=[
   {"stage":"5","mode":"","quiztype":"漢字力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あてはまるのは？<br><br>□法も筆の誤り<br>□法筆を選ばず","image":"","music":"","image2":"","image2time":"","options":[{"text":"images/hiroshi1.png"},{"text":"images/hiroshi2.png"},{"text":"images/hiroshi3.png"},{"text":"images/hiroshi4.png"}],"correct":"images/hiroshi1.png","answerPict":"","rand":true,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0,"banner":"images/banner_pgo.png"},
   {"stage":"5","mode":"renda","quiztype":"運動神経伝達力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"連打して！","image":"images/pico_up.png","music":"","image2":"images/pico_down.png","image2time":"","options":[{"text":"連打!"},{"text":""},{"text":""},{"text":""}],"correct":"","answerPict":"","rand":false,"answertime":5000,"answerstart":5000,"perfect":50,"excellent":40,"great":30,"good":20,"safe":10,"banner":"images/banner_michi3.png"},
   {"stage":"5","mode":"mikiri","quiztype":"運動神経伝達力","beforeTxt":"もぐらが出たらたたけ！","beforeImg":"images/anagachi_0.png","beforeMusic":"","beforeTime":"13000","question":"もぐらが出たらたたけ！","image":"images/anagachi_mogu.png","music":"","image2":"","image2time":"","options":[{"text":"左上"},{"text":"右上"},{"text":"左下"},{"text":"右下"}],"correct":"左下","answerPict":"","rand":false,"answertime":4000,"answerstart":4000,"perfect":3500,"excellent":3000,"great":2000,"good":1000,"safe":0,"banner":"images/banner_anagachi1.png"},
-  {"stage":"5","mode":"","quiztype":"聴力","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"みちよって何回言った？","image":"images/kiite.png","music":"","image2":"","image2time":"","options":[{"text":"33"},{"text":"34"},{"text":"35"},{"text":"36"}],"correct":"34","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0,"banner":"images/banner_suno.png"},
+  {"stage":"5","mode":"","quiztype":"聴力","beforeTxt":"BGMを聞いて！","beforeImg":"images/kiite.png","beforeMusic":"","beforeTime":"0","question":"みちよって何回言った？","image":"images/kiite.png","music":"","image2":"","image2time":"","options":[{"text":"33"},{"text":"34"},{"text":"35"},{"text":"36"}],"correct":"34","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0,"banner":"images/banner_suno.png"},
   {"stage":"5","mode":"","quiztype":"最終確認","beforeTxt":"","beforeImg":"","beforeMusic":"","beforeTime":"","question":"あなたは<br>吉田道代<br>ですね？","image":"","music":"","image2":"","image2time":"","options":[{"text":"はい"},{"text":""},{"text":""},{"text":""}],"correct":"はい","answerPict":"","rand":false,"answertime":10000,"answerstart":10000,"perfect":9500,"excellent":7500,"great":5000,"good":2500,"safe":0,"banner":""},
 ];
 
@@ -493,13 +493,27 @@ function showQuestion(){
       setTimeout(()=>{changeBanner('images/banner_anagachi6.png')}, 13000);
     }
 
-    setTimeout(()=>{
-      if(q.mode=='kioku'){
-        startQuizCountdown();
+    if(q.question=='みちよって何回言った？'){
+      //みちよ連呼が終わるまで待機
+      let taiki =  103 - bgm_michiyo.currentTime;
+
+      if(taiki>0){
+        setTimeout(()=>{
+          showQuestionMain();
+        },taiki);
       }else{
         showQuestionMain();
       }
-    },q.beforeTime);
+
+    }else{
+      setTimeout(()=>{
+        if(q.mode=='kioku'){
+          startQuizCountdown();
+        }else{
+          showQuestionMain();
+        }
+      },q.beforeTime);
+    }
     
   }else{
     showQuestionMain();
