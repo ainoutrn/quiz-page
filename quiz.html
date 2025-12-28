@@ -1391,6 +1391,7 @@ function init(){
   bgm2 = prePlaySound('Specification');
   bgm3 = prePlaySound('Specification');
   bgm4 = prePlaySound('Specification');
+  bgm5 = prePlaySound('Specification_michi');
 
   bgm_gainNode = connectAudio(bgm);
   michiyo_gainNode = connectAudio(bgm_michiyo);
@@ -1484,7 +1485,7 @@ function showCountdown(){
         document.getElementById('timer-container').style.display = "";
         document.getElementById('buttons').style.display = "";
         
-        if(nowStage.stage==FINAL_STAGE || nowStage.stage==1){
+        if(nowStage.stage==1){
 
         }else{
           //BGMスピードを変更
@@ -1606,6 +1607,9 @@ function playBGM(stage){
     break;
   case "4":
     target = bgm4;
+    break;
+  case "5":
+    target = bgm5;
     break;
   }
 /*

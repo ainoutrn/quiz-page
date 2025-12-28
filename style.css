@@ -711,8 +711,8 @@ button.pressed{
 }
 
 .mikiri button{
-  border:0.4375rem solid var(--color-mikiri);
-  color:var(--color-mikiri);
+  /*border:0.4375rem solid var(--color-mikiri);
+  color:var(--color-mikiri); */
   background-image: url("images/mikiri.png");
   background-size: contain;     /* 正方形画像の比率維持 */
   background-repeat: no-repeat;
@@ -720,8 +720,8 @@ button.pressed{
 }
 
 .mikiri button.pressed{
-  background:var(--color-mikiri);
-  color:var(--color-text);
+  /* cbackground:var(--color-mikiri);
+  color:var(--color-text); */
   background-image: url("images/mikiri_press.png");
   background-size: contain;     /* 正方形画像の比率維持 */
   background-repeat: no-repeat;
@@ -729,8 +729,8 @@ button.pressed{
 }
 
 .renda button{
-  border:0.4375rem solid var(--color-renda);
-  color:var(--color-renda);
+  /* border:0.4375rem solid var(--color-renda);
+  color:var(--color-renda); */
   background-image: url("images/renda.png");
   background-size: contain;     /* 正方形画像の比率維持 */
   background-repeat: no-repeat;
@@ -739,7 +739,7 @@ button.pressed{
 
 .renda button.pressed{
   background:#FFFFFF;
-  color:var(--color-renda);
+  /* color:var(--color-renda);*/
   background-image: url("images/renda.png");
   background-size: contain;     /* 正方形画像の比率維持 */
   background-repeat: no-repeat;
