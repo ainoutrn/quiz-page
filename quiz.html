@@ -495,12 +495,12 @@ function showQuestion(){
 
     if(q.question=='みちよって何回言った？'){
       //みちよ連呼が終わるまで待機
-      let taiki =  103 - bgm_michiyo.currentTime;
+      let taiki = 103 - bgm_michiyo.currentTime;
 
       if(taiki>0){
         setTimeout(()=>{
           showQuestionMain();
-        },taiki);
+        },taiki * 1000);
       }else{
         showQuestionMain();
       }
