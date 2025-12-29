@@ -285,9 +285,21 @@ window.addEventListener("load", () => {
 
   imageUrls.add('images/maru.png');
   imageUrls.add('images/batsu.png');
-  imageUrls.add('images/renda.png');
-  imageUrls.add('images/mikiri.png');
-  imageUrls.add('images/mikiri_press.png');
+  imageUrls.add('images/renda1.png');
+  imageUrls.add('images/renda2.png');
+  imageUrls.add('images/renda3.png');
+  imageUrls.add('images/renda4.png');
+  imageUrls.add('images/renda5.png');
+  imageUrls.add('images/mikiri1.png');
+  imageUrls.add('images/mikiri2.png');
+  imageUrls.add('images/mikiri3.png');
+  imageUrls.add('images/mikiri4.png');
+  imageUrls.add('images/mikiri5.png');
+  imageUrls.add('images/mikiri_press1.png');
+  imageUrls.add('images/mikiri_press2.png');
+  imageUrls.add('images/mikiri_press3.png');
+  imageUrls.add('images/mikiri_press4.png');
+  imageUrls.add('images/mikiri_press5.png');
   imageUrls.add('images/anagachi_1.png');
   imageUrls.add('images/anagachi_2.png');
   imageUrls.add('images/anagachi_4.png');
@@ -595,7 +607,7 @@ function showQuestionMain(){
 
 function setButtons(){
   buttonsDiv.innerHTML="";
-  buttonsDiv.className = 'buttons '+ q.mode;
+  buttonsDiv.className = 'buttons '+ q.mode + ' stage' + nowStage.stage;
 
   if(q.rand==true){
     q.options.sort(() => Math.random() - 0.5);

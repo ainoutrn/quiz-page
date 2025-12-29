@@ -713,35 +713,77 @@ button.pressed{
 .mikiri button{
   /*border:0.4375rem solid var(--color-mikiri);
   color:var(--color-mikiri); */
-  background-image: url("images/mikiri.png");
-  background-size: contain;     /* 正方形画像の比率維持 */
-  background-repeat: no-repeat;
-  background-position: center;
+  background-size: contain!important;     /* 正方形画像の比率維持 */
+  background-repeat: no-repeat!important;
+  background-position: center!important;
+}
+
+.mikiri.stage1 button{
+  background-image: url("images/mikiri1.png");
+}
+.mikiri.stage2 button{
+  background-image: url("images/mikiri2.png");
+}
+.mikiri.stage3 button{
+  background-image: url("images/mikiri3.png");
+}
+.mikiri.stage4 button{
+  background-image: url("images/mikiri4.png");
+}
+.mikiri.stage5 button{
+  background-image: url("images/mikiri5.png");
 }
 
 .mikiri button.pressed{
-  /* cbackground:var(--color-mikiri);
-  color:var(--color-text); */
-  background-image: url("images/mikiri_press.png");
-  background-size: contain;     /* 正方形画像の比率維持 */
-  background-repeat: no-repeat;
-  background-position: center;
+  background-size: contain!important;     /* 正方形画像の比率維持 */
+  background-repeat: no-repeat!important;
+  background-position: center!important;
+}
+
+.mikiri.stage1 button.pressed{
+  background-image: url("images/mikiri_press1.png");
+}
+.mikiri.stage2 button.pressed{
+  background-image: url("images/mikiri_press2.png");
+}
+.mikiri.stage3 button.pressed{
+  background-image: url("images/mikiri_press3.png");
+}
+.mikiri.stage4 button.pressed{
+  background-image: url("images/mikiri_press4.png");
+}
+.mikiri.stage5 button.pressed{
+  background-image: url("images/mikiri_press5.png");
 }
 
 .renda button{
   /* border:0.4375rem solid var(--color-renda);
   color:var(--color-renda); */
-  background-image: url("images/renda.png");
   background-size: contain;     /* 正方形画像の比率維持 */
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.renda.stage1 button{
+  background-image: url("images/renda1.png");
+}
+.renda.stage2 button{
+  background-image: url("images/renda2.png");
+}
+.renda.stage3 button{
+  background-image: url("images/renda3.png");
+}
+.renda.stage4 button{
+  background-image: url("images/renda4.png");
+}
+.renda.stage5 button{
+  background-image: url("images/renda5.png");
 }
 
 .renda button.pressed{
   background:#FFFFFF;
   /* color:var(--color-renda);*/
   color:var(--color-dark);
-  background-image: url("images/renda.png");
   background-size: contain;     /* 正方形画像の比率維持 */
   background-repeat: no-repeat;
   background-position: center;
