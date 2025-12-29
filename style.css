@@ -789,6 +789,22 @@ button.pressed{
   background-position: center;
 }
 
+.renda.stage1 button.pressed{
+  background-image: url("images/renda1.png");
+}
+.renda.stage2 button.pressed{
+  background-image: url("images/renda2.png");
+}
+.renda.stage3 button.pressed{
+  background-image: url("images/renda3.png");
+}
+.renda.stage4 button.pressed{
+  background-image: url("images/renda4.png");
+}
+.renda.stage5 button.pressed{
+  background-image: url("images/renda5.png");
+}
+
 button img{
   max-width:60%; margin-top:0.5dvh; border-radius:0.375rem;
 }
