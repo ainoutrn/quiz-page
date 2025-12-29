@@ -8,18 +8,26 @@
 <style>
 
 .landscape::before{
-  font-size: large;
-  content:"このアプリはスマートフォン専用です。";
-  position:fixed; inset:0;
-  background:#000; color:#fff;
-  display:flex; align-items:center; justify-content:center;
-  height: 100dvh;
-  width: 100dvw;
-  z-index:999999;
+  content:""; /*"このアプリはスマートフォン専用です。";*/
+  position:fixed;
+  inset:0;
+  background:
+    url("images/pcnotice.png") center 40% / 70dvh auto no-repeat,
+    #000;
+  font-size: 100%!important;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  height:100dvh;
+  width:100dvw;
+  z-index:9999;
 }
 
 .ios .landscape::before{
   content:"縦向きでご利用ください";
+  background:#000;
 }
 
 :root {
