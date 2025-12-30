@@ -269,6 +269,8 @@ const loadingProgress=document.getElementById('loadingProgress');
 // JSON内のすべての画像URLを抽出してプリロード
 window.addEventListener("load", () => {
 
+  checkOrientation();
+
   setTimeout(() => {
     //初回確認を表示し、裏でプリロード
     document.getElementById('first-confirm').classList.add('show');
@@ -1392,6 +1394,8 @@ function accelerateBackground() {
 }
 
 function init(){
+
+  checkOrientation();
 
   const hash = window.location.hash.substring(1); // #除去
   const params = new URLSearchParams(hash);
