@@ -136,7 +136,11 @@ img {
 
 .score{font-size:2.5em;font-weight:bold;margin-bottom:0.6em;}
 .note{font-size:0.95em;margin-bottom:1em;}
-.staff{margin-top:0.5em;}
+.staff{
+  display:flex;
+  gap:2em;          /* メンバー間の余白 */
+  align-items:flex-start;
+}
 .member{margin-bottom:0.8em;}
 .role{font-size:0.85em;margin-bottom:0.25em;}
 .row{display:flex;align-items:center;gap:0.6em;}
