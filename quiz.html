@@ -91,6 +91,7 @@ function checkOrientation() {
   document.body.classList.toggle('landscape', isLandscape);
 }
 window.addEventListener('resize', checkOrientation);
+window.addEventListener('orientationchange', checkOrientation);
 </script>
 </head>
 <body>
