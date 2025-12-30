@@ -80,7 +80,14 @@ var isHiroshi = false;
 var kasoku = false;
 
 function checkOrientation() {
+  /*
   const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+  document.body.classList.toggle('landscape', isLandscape);
+  */
+
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const isLandscape = w > h; // 横向き
   document.body.classList.toggle('landscape', isLandscape);
 }
 window.addEventListener('resize', checkOrientation);
