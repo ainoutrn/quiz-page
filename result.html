@@ -145,7 +145,9 @@ img {
 .role{font-size:0.85em;margin-bottom:0.25em;}
 .row{display:flex;align-items:center;gap:0.6em;}
 .icon{width:5dvh;height:5dvh;border-radius:50%;object-fit:cover;}
-.name{padding-left:0.5em;font-weight:bold;font-size:1.3em;}
+.name{padding-left:0.5em;font-weight:bold;
+  white-space: nowrap;   /* 改行しない */
+  font-size:1.3em;}
 
 /*初期表示*/
 #first-tap-area{
