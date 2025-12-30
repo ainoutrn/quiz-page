@@ -87,11 +87,19 @@ function checkOrientation() {
 
   const w = window.innerWidth;
   const h = window.innerHeight;
+
+  alert("発火。width:"+w+", height:"+h+"、横向き判定は"+(w > h));
+
   const isLandscape = w > h; // 横向き
   document.body.classList.toggle('landscape', isLandscape);
 }
-window.addEventListener('resize', checkOrientation);
-window.addEventListener('orientationchange', checkOrientation);
+window.addEventListener('resize',  () => {
+  setTimeout(() => {checkOrientation();}, 300)
+});
+window.addEventListener('orientationchange',  () => {
+  setTimeout(() => {heckOrientation();}, 300)
+});
+//window.addEventListener('orientationchange', checkOrientation);
 </script>
 </head>
 <body>
