@@ -354,7 +354,7 @@ body {
   </div>
 
   
-  <div class="footer">©TEAM STAND WITH FREAND</div>
+  <div class="footer">©TEAM STAND WITH FRIEND</div>
   
 </div>
 
@@ -367,14 +367,29 @@ if (
   document.documentElement.classList.add('ios');
 }
 
+/*
 function checkOrientation() {
   const isLandscape = window.matchMedia('(orientation: landscape)').matches;
   document.body.classList.toggle('landscape', isLandscape);
 }
 window.addEventListener('resize', checkOrientation);
+*/
+function checkOrientation() {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+
+  //alert("発火。width:"+w+", height:"+h+"、横向き判定は"+(w > h));
+
+  const isLandscape = w > h; // 横向き
+  document.body.classList.toggle('landscape', isLandscape);
+}
+window.addEventListener('resize',  () => {
+  setTimeout(() => {checkOrientation();}, 300)
+});
+window.addEventListener('orientationchange',  () => {
+  setTimeout(() => {checkOrientation();}, 300)
+});
 checkOrientation();
-
-
 
 
 const btn = document.querySelector('.start-btn');
