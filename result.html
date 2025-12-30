@@ -136,12 +136,17 @@ img {
 
 .score{font-size:2.5em;font-weight:bold;margin-bottom:0.6em;}
 .note{font-size:0.95em;margin-bottom:1em;}
+
 .staff{
   display:flex;
-  gap:2em;          /* メンバー間の余白 */
-  align-items:flex-start;
+  justify-content:center;   /* 全体を中央へ */
+  gap:2em;
 }
-.member{margin-bottom:0.8em;}
+
+.member{
+  flex:1;                   /* 幅を均等化 */
+  max-width:18em;           /* 横に広がりすぎ防止 */
+}
 .role{font-size:0.85em;margin-bottom:0.25em;}
 .row{display:flex;align-items:center;gap:0.6em;}
 .icon{width:5dvh;height:5dvh;border-radius:50%;object-fit:cover;}
